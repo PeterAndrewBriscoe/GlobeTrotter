@@ -13,7 +13,7 @@ const Search = ({}) => {
 	
 	async function getResults(e){
 		e.preventDefault()
-		const tagLabels = {"art": "subtype-Art_museums", "beaches": "beaches", "cuisine": "cuisine", "golf": "golf"}
+		const tagLabels = {"art": "subtype-Art_museums", "beaches": "beaches", "cuisine": "cuisine", "golf": "golf", "museums":"museums", "skiing": "poitype-Ski_area", "hiking": "hiking"}
 		const chosenTags = []
 		const chosenTagsUrl = []
 		const chosenScores = []
@@ -23,6 +23,9 @@ const Search = ({}) => {
 			if (e.target[x].type==="checkbox"){
 				if(e.target[x].checked){
 				// add tags and score lower bound to list, ready for fetch url
+				console.log(x)
+				console.log(tagLabels[e.target[x].name])
+
 				chosenTags.push(tagLabels[e.target[x].name])
 				chosenTagsUrl.push(`child_tag_labels=${tagLabels[e.target[x].name]}`)
 				chosenScores.push(`${tagLabels[e.target[x].name]}_score=>${e.target[x+1].value}`)
@@ -30,8 +33,16 @@ const Search = ({}) => {
 			}
 		}
 		const joinedTags=chosenTagsUrl.join("&")
+		console.log(joinedTags)
 		const joinedScores=chosenScores.join("&")
-		const fetchedData = await axios.get(`https://www.triposo.com/api/20220104/location.json?${joinedTags}&${joinedScores}&type=city&order_by=-score&account=${accountId}&token=${apiToken}`)
+		let fetchedData = await axios.get(`https://www.triposo.com/api/20220104/location.json?${joinedTags}&${joinedScores}&type=city&order_by=-score&account=${accountId}&token=${apiToken}`)
+		
+		// separate call for hiking to include national parks
+		if(joinedTags.includes("hiking")){
+			const nationalParks = await axios.get(`https://www.triposo.com/api/20220104/location.json?${joinedTags}&${joinedScores}&type=national_park&order_by=-score&account=${accountId}&token=${apiToken}`)
+			fetchedData.data.results = fetchedData.data.results.concat(nationalParks.data.results)
+		}
+		console.log()
 		
 		// calculate average score for chosen metrics
 		for(let x in fetchedData.data.results){
@@ -42,7 +53,7 @@ const Search = ({}) => {
 			fetchedData.data.results[x].averageMetricScore = getAverage(metricScores)
 		}
 		fetchedData.data.results.sort((a, b) => (a.averageMetricScore > b.averageMetricScore) ? -1 : 1)
-		setResults(fetchedData.data.results)
+		setResults(fetchedData.data.results.slice(0,10))
 	}
 
 	return (
