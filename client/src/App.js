@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Context from './utils/Context'
+import Navbar from './components/Navbar'
+import test_data from './utils/test_data.json'
 
 function App() {
-   const [triviaData, setTriviaData] = useState('')
+   const [userData, setUserData] = useState(localStorage.userData)
+   const [placeData, setPlaceData] = useState(test_data)
 
    return (
       <div>
-         <Context.Provider value={{triviaData, setTriviaData}}>
+         <Context.Provider value={{placeData, setPlaceData, userData, setUserData}}>
             <header>
-               <h2>Globe Trotters</h2>
+               <Navbar />
             </header>
             <main>
                <Outlet />
