@@ -16,6 +16,29 @@ input{
   margin: 0.4%;
 }
 
+.result-grid{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  width: 100%;
+}
+
+.result-item{
+  text-align: center;
+  padding:2%;
+  border: 1px solid black;
+}
+
 #option-form > div > i{
   margin: 0.4%;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: center;
+}
+
+#flight-form{
+  display: flex;
+  flex-direction: column;
+  width: 30%
 }

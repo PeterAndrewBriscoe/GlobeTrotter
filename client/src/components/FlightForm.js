@@ -13,13 +13,19 @@ const FlightForm = () => {
     const [originCode, setOriginCode]= useState()
 
     const [url, setUrl]=useState()
+    const [searches, setSearches]=useState(0)
 
     async function getAirports(e){
+        setSearches(searches+1)
+        setOriginCode(null)
+        setDestinationCode(null)
+        setUrl(null)
         e.preventDefault()
         const body = {'destination': 'Los Angeles', 'origin': e.target[0].value }
         const results = await axios.post("http://localhost:8000/airports/", body)
         const potential_destinations = []
         const potential_origins = []
+
         for(let x in results.data.origin){
             potential_origins.push(results.data.origin[x])
         }
@@ -29,7 +35,18 @@ const FlightForm = () => {
             potential_destinations.push(results.data.destination[x])
         }
         setDestinations(potential_destinations)
-        setDestinationCode(potential_destinations[0].code)
+
+        if(potential_origins.length > 1){
+            setOriginCode(potential_origins[0].code)
+        } else if (potential_origins.length === 0){
+            setOriginCode(null)
+        }
+
+        if(potential_destinations.length === 1){
+            setDestinationCode(potential_destinations[0].code)
+        } else if (potential_destinations.length === 0){
+            setDestinationCode(null)
+        }
 
         setAdults(e.target[3].value)
         setChildren(e.target[4].value)
@@ -39,8 +56,13 @@ const FlightForm = () => {
         let formattedReturnDate = e.target[2].value.substring(2).replace(/-/g,'')
         setOutDate(formattedOutDate)
         setReturnDate(formattedReturnDate)
-        
+
+        if(originCode && destinationCode){
+            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${outDate}/${returnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
+            setUrl(url)
+        }
     }
+    
 
     function generateLink(e){
         // "https://www.skyscanner.net/transport/flights/lond/nyca/220209/220216/"
@@ -59,33 +81,49 @@ const FlightForm = () => {
             const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${outDate}/${returnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
             setUrl(url)
         }
-    }
+        }
 
     return(
-        <>
+        <div className="flex-container">
         <form id="flight-form" onSubmit={getAirports}>
-            <input name="from" type="text"/>From: 
-            <input name="outboundDate" type="date"/>Outbound flight:
-            <input name="returnDate" type="date"/>Return:
-            <input name="adults" type="number" min="0" max="8"/>Adults:
-            <input name="children" type="number" min="0" max="8"/>Children:
-            <input type="submit"/>Submit
+            <>
+                <label>Flight from:</label>
+                <input name="from" type="text"/>
+            </>
+            <>
+                <label>Outbound Date:</label>
+                <input name="outboundDate" type="date"/>
+            </>
+            <>
+                <label>Return Date:</label>
+                <input name="returnDate" type="date"/>
+            </>
+            <>
+                <label>Number of Adults:</label>
+                <input name="adults" type="number" min="0" max="8"/>
+            </>
+            <>
+                <label>Number of Children:</label>
+                <input name="children" type="number" min="0" max="8"/>
+            </>
+            <input type="submit"/>
         </form>
-        {origins.length > 0 ?   <form className="potential-airports">
+        {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports">
                                             <select name="origin-list" onChange={generateLink}>
+                                                <option value="">Select Airport</option>
                                                 {origins.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
                                             </select>
                                 </form>
         : <></>}
-        {destinations.length > 0 ? <form className="potential-airports">
+        {destinations.length > 0 && origins.length > 0 ? <form className="potential-airports">
                                             <select name="destination-list" onChange={generateLink}>
                                                 {destinations.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
                                             </select>
                                         </form>
         : <></>}
-        {/* {destinations.length == 0 ? <p>Currently no flights to this destination</p> : <> </>} */}
-        {url? <a href={url}>Click Here For Flights!</a> : <> </>}
-        </>
+        {searches>0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
+        {url && (destinations.length != 0 && origins.length != 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
+        </div>
     )
 }
 

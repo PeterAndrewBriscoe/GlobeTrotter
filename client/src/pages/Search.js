@@ -71,7 +71,7 @@ const Search = ({}) => {
 			<h3>Welcome</h3>
 			<Options getResults={getResults}/>
 		</div>
-		{results ? <div> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>}
+		{results ? <div className="result-grid"> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>}
 		<FlightForm/>
 		</>
 	)
