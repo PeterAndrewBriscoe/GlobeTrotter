@@ -20,10 +20,10 @@ def index(request):
 
     for airport in airport_array:
 
-        if body['destination'] in airport['city']:
+        if body['destination'].lower() in airport['city'].lower():
             possible_airports['destination'].append(airport)
 
-        elif body['origin'] in airport['city']:
+        elif body['origin'].lower() in airport['city'].lower():
             possible_airports['origin'].append(airport)
 
     return Response(possible_airports)
