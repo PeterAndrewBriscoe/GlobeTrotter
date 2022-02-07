@@ -56,7 +56,7 @@ const FlightForm = () => {
         let formattedReturnDate = e.target[2].value.substring(2).replace(/-/g,'')
         setOutDate(formattedOutDate)
         setReturnDate(formattedReturnDate)
-
+        console.log(originCode)
         if(originCode && destinationCode){
             const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${outDate}/${returnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
             setUrl(url)
@@ -88,19 +88,19 @@ const FlightForm = () => {
         <form id="flight-form" onSubmit={getAirports}>
             <>
                 <label>Flight from:</label>
-                <input name="from" type="text"/>
+                <input required name="from" type="text"/>
             </>
             <>
                 <label>Outbound Date:</label>
-                <input name="outboundDate" type="date"/>
+                <input required name="outboundDate" type="date"/>
             </>
             <>
                 <label>Return Date:</label>
-                <input name="returnDate" type="date"/>
+                <input required name="returnDate" type="date"/>
             </>
             <>
                 <label>Number of Adults:</label>
-                <input name="adults" type="number" min="0" max="8"/>
+                <input required name="adults" type="number" min="0" max="8"/>
             </>
             <>
                 <label>Number of Children:</label>
@@ -121,7 +121,7 @@ const FlightForm = () => {
                                             </select>
                                         </form>
         : <></>}
-        {searches>0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
+        {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
         {url && (destinations.length != 0 && origins.length != 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
         </div>
     )
