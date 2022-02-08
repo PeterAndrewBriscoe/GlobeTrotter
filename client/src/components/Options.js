@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 const Options = ({getResults}) => {
-    const activites = ["Art", "Beaches", "Cuisine", "Golf", "Museums"]
-
     // useStates for checked/unchecked values for each option
     const [art, setArt] = useState(false)
 	const [beaches, setBeaches] = useState(false)
@@ -125,6 +123,7 @@ const Options = ({getResults}) => {
                 <i className="fas fa-cocktail"></i>
                 {nightlife? <>{(Math.round(nightlifeValue * 100) / 100).toFixed(1)} <input type="range" name="nightlifeValue" min="5" max="10" value={nightlifeValue} step="0.2" onChange={handleSlide}></input></> : <></>}
             </div>
+  
                 {noneChecked? <input disabled type="submit"/>: <input type="submit"/>}
     </form>
     )
