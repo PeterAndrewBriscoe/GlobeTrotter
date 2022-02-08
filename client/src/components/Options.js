@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 const Options = ({getResults}) => {
-    const activites = ["Art", "Beaches", "Cuisine", "Golf", "Museums"]
-
     // useStates for checked/unchecked values for each option
     const [art, setArt] = useState(false)
 	const [beaches, setBeaches] = useState(false)
