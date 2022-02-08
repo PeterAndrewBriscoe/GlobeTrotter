@@ -88,39 +88,40 @@ const Weather = ({locations, handleSelect}) => {
     }
 
     return (
-        // input for temp and month
-            <>
-            <form onSubmit={getTemperatures}>
-                <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/>Temperature
-                <i className="fas fa-sun"></i>
-                {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
-                {temperature?   <select name="month" onChange={handleMonth}>
-                                    <option value="1">January</option>
-                                    <option value="2">February</option>
-                                    <option value="3">March</option>
-                                    <option value="4">April</option>
-                                    <option value="5">May</option>
-                                    <option value="6">June</option>
-                                    <option value="7">July</option>
-                                    <option value="8">August</option>
-                                    <option value="9">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                                : <></>}
-                {temperature? <input type="submit"></input> : <></>}
-            </form>
-            <div> 
-                {/* {console.log(loading)}
-                {console.log(loading == 0)} */}
-                {validLocations.length>0 ? <div className="result-grid"> 
-                                            {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div>: <></>} 
+        <>
+        <div className="flex-container">
+        <form id="weather-form" onSubmit={getTemperatures}>
+            <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/>Temperature
+            <i className="fas fa-sun"></i>
+            {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
+            {temperature?   <select name="month" onChange={handleMonth}>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            : <></>}
+            {temperature? <input type="submit"></input> : <></>}
+        </form>
+        </div>
+        <div> 
+            {/* {console.log(loading)}
+            {console.log(loading == 0)} */}
+            {validLocations.length>0 ? <div className="flex-container"> <div className="result-grid"> 
+                                        {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div> </div>: <></>} 
 
-                {locations && validLocations.length===0 && !temperature ? <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> : <h3> Nothing to see here </h3>}
-                
-                {locations && validLocations.length===0 && temperature ? <h3> No Destinations for chosen temperature </h3> : <></>}
-            </div>
+            {locations && validLocations.length===0 && !temperature ? <div className="flex-container"> <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> </div>: <h3> Nothing to see here </h3>}
+            
+            {locations && validLocations.length===0 && temperature ? <h3> No Destinations for chosen temperature </h3> : <></>}
+        </div>
         </>
         )
 }

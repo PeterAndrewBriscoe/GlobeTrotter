@@ -125,7 +125,9 @@ const Options = ({getResults}) => {
                     {nightlife? <>{(Math.round(nightlifeValue * 100) / 100).toFixed(1)} <input className="slider" type="range" name="nightlifeValue" min="5" max="10" value={nightlifeValue} step="0.2" onChange={handleSlide}></input></> : <></>}
                 </div>
             </div>
+            <div className="flex-container">
                 {noneChecked? <input disabled type="submit"/>: <input type="submit"/>}
+            </div>
     </form>
     )
 }
