@@ -1,3 +1,10 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+from django.urls import reverse
+import json
 
-# Create your tests here.
+class TestViewsCase(TestCase):
+    client = Client()
+    
+    def test_trip_creation(self):
+        response = self.client.post(reverse('api'), {'location': 'New York', 'user': 1, 'startdate':123456, 'enddate':234567})
+        self.assertEqual(response.status_code, 201)

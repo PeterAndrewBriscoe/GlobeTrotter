@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 class Trip(models.Model):
     location = models.CharField(max_length=100)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    startdate = models.PositiveBigIntegerField(default=None, null=True, blank=True)
+    enddate = models.PositiveBigIntegerField(default=None, null=True, blank=True)
     # date
     # flight
     # hotels
