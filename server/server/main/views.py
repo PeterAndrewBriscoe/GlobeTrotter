@@ -3,13 +3,13 @@ from typing import Type
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Trip
-from .serializers import TripSerializer
+from .models import FlightFormInput, Trip
+from .serializers import TripSerializer, FlightFormInputSerializer
 import json
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
-@api_view(['GET', 'POST', 'DELETE', 'UPDATE'])
+@api_view(['GET', 'POST', 'DELETE'])
 def index(request):
     if request.method == 'POST':
         if(request.user.id):
@@ -69,5 +69,42 @@ def index(request):
         else:
             return Response({"message" : "User must be logged in to delete trips"}, status=status.HTTP_401_UNAUTHORIZED)
 
-    
-    
+@api_view(['GET', 'POST'])
+def form(request):
+    if request.method == 'POST':
+        if(request.user.id):
+            data = json.dumps(request.data)
+            data = json.loads(data)
+            data['user'] = request.user.id
+            if ('id' in data):
+                serializer = FlightFormInputSerializer(data=data)
+                if serializer.is_valid():
+                    input = FlightFormInput.objects.filter(pk=data['id'], user=data['user'])
+                    if not input:
+                        return Response({ 'message': 'No recorded inputs' })
+                    input.update(
+                        startdate=data['startdate'],
+                        enddate =data['enddate'],
+                        origin = data['origin'],
+                        outbound_date = data['outbound_date'],
+                        return_date = data['return_date'],
+                        adults = data['adults'],
+                        children = data['children'],
+                    )
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                serializer = FlightFormInputSerializer(data=data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        else:
+            return Response({ "message": "User must be logged in" }, status=status.HTTP_401_UNAUTHORIZED)
+    if request.method == 'GET':
+        if (request.user.id):
+            input = FlightFormInput.objects.filter(user=request.user.id)
+            serializer = FlightFormInputSerializer(input, many=True)
+            return Response(serializer.data)
+        else: 
+            return Response({"message" : "User must be logged in to get form data"}, status=status.HTTP_401_UNAUTHORIZED)

@@ -16,4 +16,12 @@ class Trip(models.Model):
     def __str__(self):
         return f'{self.id, self.location}'
 
+class FlightFormInput(models.Model):
+    origin = models.CharField(max_length=100)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    outbound_date = models.PositiveBigIntegerField()
+    return_date = models.PositiveBigIntegerField()
+    adults = models.PositiveIntegerField()
+    children = models.PositiveIntegerField()
+
 
