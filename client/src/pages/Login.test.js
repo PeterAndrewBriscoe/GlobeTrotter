@@ -8,7 +8,9 @@ describe('Login', () => {
     test('it renders', () => {
         render(<Login />, {wrapper: MemoryRouter})
         const login = screen.getByRole('Login');
+        const confPassword = screen.getByRole('confPassword')
         expect(login).toBeInTheDocument();
+        expect(confPassword).toBeInTheDocument();
     });
 
 });

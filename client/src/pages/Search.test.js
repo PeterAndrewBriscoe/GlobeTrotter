@@ -3,13 +3,22 @@ import { default as Search } from './Search';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios'
+
+// global.axios = jest.fn(() =>
+//   Promise.resolve({
+//     json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
+//   })
+// );
+
 
 describe('Search', () => {
-    let getResultMock;
+    let getResultsMock;
 
     beforeEach(() => {
-        getResultMock = jest.fn();
-        render(<Search getResult={getResultMock}/>);
+
+        getResultsMock = jest.fn(e);
+        render(<Search getResults={getResultsMock}/>);
     });
 
     test('it renders', () => {
@@ -40,5 +49,9 @@ describe('Search', () => {
         const error = screen.getAllByText('Nothing to see here');
         expect(error).toBeInstanceOf(Array);
     });
+
+    test('it fetches results',()=>{
+
+    })
 
 });
