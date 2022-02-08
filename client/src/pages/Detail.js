@@ -9,6 +9,7 @@ import { GlobeTrotter } from '../utils/axios_helper'
 
 import Slideshow from '../components/Slideshow'
 import FlightForm from '../components/FlightForm'
+import Attractions from '../components/Attractions'
 
 function Detail() {
 	const day = 8.64e7
@@ -60,6 +61,7 @@ function Detail() {
 			<h3 className='w3-center'>{placeData.name}</h3>
 			<h4>{placeData.snippet}</h4>
 			<Slideshow images={placeData.images}/>
+			<Attractions location={placeData.name}/>
 			{<div>
 				<ReactWeather
       			isLoading={isLoading}

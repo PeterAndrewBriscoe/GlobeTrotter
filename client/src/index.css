@@ -28,6 +28,70 @@ input{
   border: 1px solid black;
 }
 
+#option-form{
+  border: 1px green solid;
+  background-color: #b7d6c0;
+  margin: 0% 2% 0% 2%;
+  padding: 2% 2% 2% 2%;
+}
+
+#option-form>input[type=submit]{
+  text-align: center;
+  border: none;
+}
+
+#options-grid{
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  column-gap: 1.33333%;
+  row-gap: 2%;
+  font-size: large;
+}
+
+input[type=checkbox]{
+  margin-right: 4%;
+}
+
+i{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#options-grid>div{
+  margin: 0% 2% 2% 2%;
+}
+
+/* .slider{
+  margin-bottom: -20px;
+  outline: none;
+  background-color: #04AA6D;
+} */
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #ffffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  background: #025a3a;
+  cursor: pointer;
+  border-radius: 25%;
+}
+
 #option-form > div > i{
   margin: 0.4%;
 }
