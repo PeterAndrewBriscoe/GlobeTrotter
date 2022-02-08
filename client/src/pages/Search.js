@@ -60,7 +60,7 @@ const Search = ({}) => {
 		// 	fetchedData.data.results.push({'minimumTemp': temp})
 		// }
 		setResults(fetchedData.data.results)
-		console.log(fetchedData.data.results)
+		// console.log(fetchedData.data.results)
 	}
 
 	async function fetchResults(joinedTags,joinedScores,chosenTags){

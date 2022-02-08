@@ -15,7 +15,7 @@ const Weather = ({locations}) => {
     const getTemperatures = (e) => {
         e.preventDefault()
         setValidLocations([])
-        console.log(e)
+        // console.log(e)
         setLoading(locations.length)
         locations.forEach(async(location) => {
             await axios.get(`http://api.worldweatheronline.com/premium/v1/past-weather.ashx?key=${apiToken}&q=${location.name}&format=json&date=2021-${month}-01&enddate=2021-${month}-28`).then(response => {
@@ -26,7 +26,7 @@ const Weather = ({locations}) => {
                     avgTempC = avgTempC + parseFloat(day.avgtempC)
                 })
                 avgTempC = avgTempC/28
-                console.log(avgTempC)
+                // console.log(avgTempC)
                 if (avgTempC >= temperatureValue) {
                     setValidLocations(oldLocations => [...oldLocations, location])
                 } else {
@@ -35,7 +35,7 @@ const Weather = ({locations}) => {
                 setLoading(state => state - 1)
             })
         })
-        console.log(validLocations)
+        // console.log(validLocations)
     }
     
     // async function fetchWeather(x) {
