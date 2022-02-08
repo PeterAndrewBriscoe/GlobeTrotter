@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { GlobeTrotter } from '../utils/axios_helper'
 
 function UserMenu(props) {
 	const navigate = useNavigate()
@@ -10,10 +11,23 @@ function UserMenu(props) {
 	}
 
 	const handleLogout = () => {
-		localStorage.removeItem('userData')
-		props.setUserData('')
+		
+		async function logout() {
+			try {
+				const globeTrotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
+				await globeTrotter.logout()
+				localStorage.removeItem('globeTrotterToken')
+				localStorage.removeItem('globeTrotterUsername')
+				props.setUserData('')
+				navigate('/')
+				
+			} catch(e) {
+				console.log(e.message)
+			}
+		}
+
+		logout()
 		setShow(false)
-		navigate('/')
 	}
 
 	return(
