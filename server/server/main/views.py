@@ -18,17 +18,24 @@ def index(request):
             data['user'] = request.user.id
             print(request.user.id)
             print(data)
-            if (data['id']):
+            print('id' in data)
+            if ('id' in data):
                 serializer = TripSerializer(data=data)
                 if serializer.is_valid():
-                    try:
-                        trip = Trip.objects.filter(pk=data['id']).update(
-                            startdate=data['startdate'],
-                            enddate =data['enddate']
-                        )
-                        return Response(serializer.data, status=status.HTTP_200_OK)
-                    except:
-                        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+                    # try:
+                    trip = Trip.objects.filter(pk=data['id'], user=data['user'])
+                    print(trip)
+                    if not trip:
+                        return Response({ 'message': 'Entry not found, incorrect id or user' })
+                    trip.update(
+                        startdate=data['startdate'],
+                        enddate =data['enddate']
+                    )
+                    
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                    # except:
+                    #     print("I am being run")
+                    #     return Response({ "message": "id not found" }, status=status.HTTP_404_NOT_FOUND)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
                 serializer = TripSerializer(data=data)
