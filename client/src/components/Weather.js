@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import ResultItem from './ResultItem';
 
-const Weather = ({locations}) => {
+const Weather = ({locations, handleSelect}) => {
     const apiToken = "9ae001f74dac4f0ebfc105001220702"
     // const validLocations = []
     // console.log(locations)
@@ -82,6 +83,10 @@ const Weather = ({locations}) => {
         setMonth(e.target.value)
     }
 
+    function handleClick(x){
+
+    }
+
     return (
         // input for temp and month
             <>
@@ -109,10 +114,11 @@ const Weather = ({locations}) => {
             <div> 
                 {/* {console.log(loading)}
                 {console.log(loading == 0)} */}
-                {validLocations.length>0 ? <div className="result-grid"> {validLocations.map(x =>  <div className="result-item" key={x.id}>
-                    {x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}
-                    </div>)} </div> : <></>} 
-                {locations && validLocations.length===0 && !temperature ? <div className="result-grid"> {locations.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>}
+                {validLocations.length>0 ? <div className="result-grid"> 
+                                            {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div>: <></>} 
+
+                {locations && validLocations.length===0 && !temperature ? <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> : <h3> Nothing to see here </h3>}
+                
                 {locations && validLocations.length===0 && temperature ? <h3> No Destinations for chosen temperature </h3> : <></>}
             </div>
         </>

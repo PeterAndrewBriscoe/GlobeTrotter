@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'axios'
 import Options from '../components/Options'
 import Weather from '../components/Weather'
@@ -9,7 +9,6 @@ const Search = ({}) => {
 	const accountId = "IG3CBP2Q"
 	// const temp = results.temp
 	// const month = 6
-
 	const [results, setResults] = useState()
 
 	const getAverage = (array) => array.reduce((a, b) => a + b) / array.length;
@@ -47,7 +46,7 @@ const Search = ({}) => {
 		for(let x in fetchedData.data.results){
 			const metricScores = []
 			for(let y in chosenTags){
-				console.log(fetchedData.data.results[x][`${chosenTags[y]}_score`])
+				// console.log(fetchedData.data.results[x][`${chosenTags[y]}_score`])
 				metricScores.push(fetchedData.data.results[x][`${chosenTags[y]}_score`])
 			}
 			fetchedData.data.results[x].averageMetricScore = getAverage(metricScores)
@@ -74,14 +73,17 @@ const Search = ({}) => {
 		}
 	}
 
-	// console.log(results)
+	function handleClick(location){
+		// send user to details page
+		// setPlaceData(location)
+	}
 
 	return (
 		<>
 		<div>
 			<h3>Welcome</h3>
 			<Options getResults={getResults}/>
-			{results? <Weather locations={results}/> : <h3>No Results to Show</h3>}
+			{results? <Weather locations={results} handleClick={handleClick}/> : <h3>No Results to Show</h3>}
 		</div>
 
 		{/* {results && results.temp ? <Weather locations={results} temp={results.temp} month={month} /> : <h3> Nothing to see here </h3>}
@@ -90,7 +92,6 @@ const Search = ({}) => {
                 {x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}
                 </div>) : <h3> Nothing to see here </h3>}  */}
 		{/* {results ? <div className="result-grid"> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>} */}
-		{/* <FlightForm/> */}
 		</>
 	)
 }

@@ -6,6 +6,7 @@ import ReactWeather, { useOpenWeather } from 'react-open-weather'
 import Context from '../utils/Context'
 
 import Slideshow from '../components/Slideshow'
+import FlightForm from '../components/FlightForm'
 
 function Detail() {
 	const day = 8.64e7
