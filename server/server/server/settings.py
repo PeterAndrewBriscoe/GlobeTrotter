@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-akd10^&#76_b-15fb6v+cc5a_sg4u00()u_@q1#e5%_hry12(n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     "https://domain.com",
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'knox',
+    'airports.apps.AirportsConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -59,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 
@@ -156,3 +160,7 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]

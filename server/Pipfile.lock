@@ -113,6 +113,13 @@
             "index": "pypi",
             "version": "==4.0.2"
         },
+        "django-adaptors": {
+            "hashes": [
+                "sha256:f0abf8e80644a77fdf734c5b848262c9f3dc76d0fe33254fe20a47d01ba67597"
+            ],
+            "index": "pypi",
+            "version": "==0.2.5"
+        },
         "django-cors-headers": {
             "hashes": [
                 "sha256:a22be2befd4069c4fc174f11cf067351df5c061a3a5f94a01650b4e928b0372b",
