@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios'
 import Options from '../components/Options'
 import Weather from '../components/Weather'
-import FlightForm from '../components/FlightForm';
+
 
 const Search = ({}) => {
 	const apiToken = "3f71d5kylylwplhj7wu5ikwa4yds3dlj"
@@ -78,7 +78,6 @@ const Search = ({}) => {
 		</div>
 		{results ? <Weather locations={results} temp={temp} month={month} /> : <h3> Nothing to see here </h3>}
 		{/* {results ? <div className="result-grid"> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>} */}
-		<FlightForm/>
 		</>
 	)
 }
