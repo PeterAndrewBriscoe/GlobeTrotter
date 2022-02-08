@@ -9,15 +9,19 @@ function Login() {
 	const { setUserData } = useContext(Context)
 	const [mode, setMode] = useState('Login')
 	const [output, setOutput] = useState('')
-	const [formData, setFormData] = useState({ email: '', password: '', confPassword: ''})
+	const [formData, setFormData] = useState({ username: '', email: '', password: '', confPassword: ''})
 	  
 	async function authUser() {
 		try {
 			const trotter = GlobeTrotter()
 			const res = await trotter.loginRegUser(formData, mode)
-			localStorage.setItem('userData', res)
-			setUserData(res)
-			navigate('/')
+			if(res && res.token) {
+				localStorage.setItem('globeTrotterToken', res.token)
+				localStorage.setItem('globeTrotterUsername', formData.username)
+				localStorage.setItem('globeTrotterEmail', formData.email)
+				setUserData({username: formData.username, email: formData.email})
+				navigate('/')
+			}
 		} catch(e) {
 			setOutput(e.message)
 		}
@@ -43,7 +47,10 @@ function Login() {
 				<Tab modeState={{mode, setMode}} title='Login' />
 				<Tab modeState={{mode, setMode}} title='Register' />
 				<div className='w3-container'></div>
-				<input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='username' required />
+				<input className="w3-input w3-margin-top" type="text" name="username" value={formData.username} onChange={handleInput} placeholder='username' required />
+				{ mode === 'Register' &&
+					<input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='email' required />
+				}
 				<input className="w3-input w3-margin-top" type="password" name="password" value={formData.password} onChange={handleInput} placeholder='password' required />
 				{ mode === 'Register' &&
 					<input className="w3-input w3-margin-top" type="password" name="confPassword" value={formData.confPassword} onChange={handleInput} placeholder='confirm password' required />

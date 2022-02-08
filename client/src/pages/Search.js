@@ -1,18 +1,21 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'axios'
 import Options from '../components/Options'
+import Weather from '../components/Weather'
+
 
 const Search = ({}) => {
 	const apiToken = "3f71d5kylylwplhj7wu5ikwa4yds3dlj"
 	const accountId = "IG3CBP2Q"
-
+	// const temp = results.temp
+	// const month = 6
 	const [results, setResults] = useState()
 
 	const getAverage = (array) => array.reduce((a, b) => a + b) / array.length;
 	
 	async function getResults(e){
 		e.preventDefault()
-		const tagLabels = {"art": "subtype-Art_museums", "beaches": "beaches", "cuisine": "cuisine", "golf": "golf", "museums":"museums", "skiing": "poitype-Ski_area", "hiking": "hiking"}
+		const tagLabels = {"art": "subtype-Art_museums", "beaches": "beaches", "cuisine": "cuisine", "golf": "golf", "museums":"museums", "skiing": "poitype-Ski_area", "hiking": "hiking", "nightlife": "nightlife"}
 		const chosenTags = []
 		const chosenTagsUrl = []
 		const chosenScores = []
@@ -43,14 +46,20 @@ const Search = ({}) => {
 		for(let x in fetchedData.data.results){
 			const metricScores = []
 			for(let y in chosenTags){
-				console.log(fetchedData.data.results[x][`${chosenTags[y]}_score`])
+				// console.log(fetchedData.data.results[x][`${chosenTags[y]}_score`])
 				metricScores.push(fetchedData.data.results[x][`${chosenTags[y]}_score`])
 			}
 			fetchedData.data.results[x].averageMetricScore = getAverage(metricScores)
 		}
 		fetchedData.data.results.sort((a, b) => (a.averageMetricScore > b.averageMetricScore) ? -1 : 1)
+		// fetchedData.results.minimumTemp = e.target.
 		// set results to the top 10 found results
 		setResults(fetchedData.data.results.slice(0,10))
+		// if(temp){
+		// 	fetchedData.data.results.push({'minimumTemp': temp})
+		// }
+		setResults(fetchedData.data.results)
+		// console.log(fetchedData.data.results)
 	}
 
 	async function fetchResults(joinedTags,joinedScores,chosenTags){
@@ -64,13 +73,25 @@ const Search = ({}) => {
 		}
 	}
 
+	function handleClick(location){
+		// send user to details page
+		// setPlaceData(location)
+	}
+
 	return (
 		<>
 		<div>
 			<h3>Welcome</h3>
 			<Options getResults={getResults}/>
+			{results? <Weather locations={results} handleClick={handleClick}/> : <h3>No Results to Show</h3>}
 		</div>
-		{results ? <div> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>}
+
+		{/* {results && results.temp ? <Weather locations={results} temp={results.temp} month={month} /> : <h3> Nothing to see here </h3>}
+
+		{results && !results.temp ? results.map(x => <div className="result-item" key={x.id}>
+                {x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}
+                </div>) : <h3> Nothing to see here </h3>}  */}
+		{/* {results ? <div className="result-grid"> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>} */}
 		</>
 	)
 }
