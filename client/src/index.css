@@ -18,17 +18,27 @@ input{
   margin: 0.4%;
 }
 
-h2, h3{
+#heading{
+  font-size: 250%;
+  margin-bottom: -2%;
+}
+a{
+  text-decoration: none;
+}
+h1, h3{
+  text-decoration: none;
+  color: black;
   text-align: center;
 }
 
 .result-grid{
   display: grid;
-  grid-template-columns: 33.33333% 33.33333% 33.3333%;
+  grid-template-columns: 33.33333% 33.33333% 33.33333%;
   column-gap: 1%;
   row-gap: 2.5%;
   width: 80%;
   margin-left: -1%;
+  margin-bottom: 20px;
 }
 
 .result-item{
@@ -102,6 +112,10 @@ h2, h3{
 
 #weather-form{
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
   border: 1px #97773c solid;
   background-color: 	#e9b85d;
   width: 80%;
@@ -177,4 +191,20 @@ i{
 
 #flight-form>input{
   width: auto;
+}
+
+/* IPAD / SMALL LAPTOP VIEW */
+@media screen and (max-width: 865px) {
+  .result-grid{
+    grid-template-columns: 50% 50%;
+    row-gap: 1.5%;
+  }
+}
+
+/* MOBILE VIEW */
+@media screen and (max-width: 625px) {
+  .result-grid{
+    grid-template-columns: 100%;
+    row-gap: 1.5%;
+  }
 }
