@@ -106,7 +106,7 @@ const Weather = ({locations}) => {
                                 : <></>}
                 {temperature? <input type="submit"></input> : <></>}
             </form>
-            <div> 
+            <div role='weather'> 
                 {/* {console.log(loading)}
                 {console.log(loading == 0)} */}
                 {validLocations.length>0 ? <div className="result-grid"> {validLocations.map(x =>  <div className="result-item" key={x.id}>
