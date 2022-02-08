@@ -125,6 +125,7 @@ const Options = ({getResults}) => {
                 <i className="fas fa-cocktail"></i>
                 {nightlife? <>{(Math.round(nightlifeValue * 100) / 100).toFixed(1)} <input type="range" name="nightlifeValue" min="5" max="10" value={nightlifeValue} step="0.2" onChange={handleSlide}></input></> : <></>}
             </div>
+  
                 {noneChecked? <input disabled type="submit"/>: <input type="submit"/>}
     </form>
     )
