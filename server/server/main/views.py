@@ -76,15 +76,13 @@ def form(request):
             data = json.dumps(request.data)
             data = json.loads(data)
             data['user'] = request.user.id
-            if ('id' in data):
+            if (FlightFormInput.objects.filter(user=data['user']).exists()):
                 serializer = FlightFormInputSerializer(data=data)
                 if serializer.is_valid():
-                    input = FlightFormInput.objects.filter(pk=data['id'], user=data['user'])
+                    input = FlightFormInput.objects.filter(user=data['user'])
                     if not input:
                         return Response({ 'message': 'No recorded inputs' })
                     input.update(
-                        startdate=data['startdate'],
-                        enddate =data['enddate'],
                         origin = data['origin'],
                         outbound_date = data['outbound_date'],
                         return_date = data['return_date'],

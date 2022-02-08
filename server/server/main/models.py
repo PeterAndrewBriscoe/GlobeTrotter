@@ -24,4 +24,7 @@ class FlightFormInput(models.Model):
     adults = models.PositiveIntegerField()
     children = models.PositiveIntegerField()
 
+    def __str__(self):
+        return f'ID {self.id} - User {self.user}'
+
 
