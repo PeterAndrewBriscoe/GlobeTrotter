@@ -22,9 +22,12 @@ input{
   font-size: 250%;
   margin-bottom: -2%;
 }
+
 a{
   text-decoration: none;
+  color: black
 }
+
 h1, h3{
   text-decoration: none;
   color: black;
@@ -93,21 +96,40 @@ h1, h3{
 #option-form{
   border: 1px green solid;
   background-color: #b7d6c0;
+  border-radius: 10px;
   margin: 0% 2% 0% 2%;
-  padding: 2% 2% 2% 2%;
+  padding: 20px;
 }
 
-#option-form>input[type=submit]{
+#option-form>div>input[type=submit]{
   text-align: center;
   border: none;
+  margin-top: 1.4%;
+  padding: 8px;
+  font-size: 110%;
 }
 
 #options-grid{
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   column-gap: 1.33333%;
-  row-gap: 2%;
+  row-gap: 15px;
   font-size: large;
+}
+
+.option-box{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.option-box>div>input[type=checkbox]{
+  margin-bottom: 25px;
+}
+
+#options-grid>div>input[type=range]{
+  margin-top: 35px;
+  position: absolute;
 }
 
 #weather-form{
@@ -121,6 +143,7 @@ h1, h3{
   width: 80%;
   margin: 2% 2% 2% 2%;
   padding: 2% 2% 2% 2%;
+  border-radius: 10px;
 }
 
 input[type=checkbox]{
@@ -144,7 +167,7 @@ i{
 
 .slider {
   -webkit-appearance: none;
-  width: 100%;
+  width: auto;
   height: 8px;
   background: #ffffff;
   outline: none;
