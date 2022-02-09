@@ -334,15 +334,18 @@ i{
   border-radius: 25%;
 }
 
-@media screen and (max-width: 715px) {
+@media screen and (max-width: 762px) {
   #weather-form{
     flex-direction: column;
   }
+  #weather-form-topdiv{
+    flex-direction: column;
+  }
   #weather-form>div>select{
-    margin: 5px 10px 0px 10px;
+    margin: 10px 10px 0px 10px;
   }
   #weather-form>div>input[type=submit]{
-    margin: 5px 10px 0px 10px;
+    margin: 10px 10px -20px 10px;
   }
 }
 
@@ -378,6 +381,9 @@ i{
     grid-template-columns: 50% 50%;
     row-gap: 1.5%;
   }
+  #weather-form>div>input[type=submit]{
+    margin-bottom: 0px;
+  }
 }
 
 /* MOBILE VIEW */
@@ -385,5 +391,47 @@ i{
   .result-grid{
     grid-template-columns: 100%;
     row-gap: 1.5%;
+  }
+  #logo{
+    height: 80px;
+  }
+  #weather-form{
+    padding-top:15px;
+  }
+}
+
+@media screen and (max-width: 478px) {
+
+  #logo{
+    height: 60px;
+  }
+
+  .result-grid{
+    row-gap: 10px;
+  }
+
+  #option-form{
+    padding: 20px 5px 10px 5px;
+  }
+
+  .option-box{
+    font-size: 12pt;
+  }
+
+  .option-box>input[type=range]{
+    text-align: center;
+    margin-top: 40px;
+    position: absolute;
+    margin-left: 3%;
+    width: 30%;
+  }
+
+  #weather-form{
+    font-size: 12pt;
+    padding-top:15px;
+  }
+
+  #weather-slider{
+    width: 40%;
   }
 }
