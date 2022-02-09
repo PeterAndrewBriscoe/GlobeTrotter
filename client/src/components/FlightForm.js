@@ -106,7 +106,7 @@ const FlightForm = () => {
                 <label>Number of Children:</label>
                 <input name="children" type="number" min="0" max="8"/>
             </>
-            <input type="submit" role='submit'/>
+            <input type="submit" role='submit' data-testid='submit'/>
         </form>
         {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports">
                                             <select name="origin-list" onChange={generateLink}>

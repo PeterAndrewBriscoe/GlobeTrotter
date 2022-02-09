@@ -10,14 +10,14 @@ describe('ResultItem', () => {
 
    
     test('it renders', () => {
-        render(<ResultItem />, {wrapper: MemoryRouter})
+        render(<ResultItem location={'New York'}/>, {wrapper: MemoryRouter})
         const div = screen.getByRole('div');
         expect(div).toBeInTheDocument();
     });
        
     test('it lets you click ', () => {
         let handleClick= onclick
-        render(<ResultItem />, {wrapper: MemoryRouter})
+        render(<ResultItem location={'New York'}/>, {wrapper: MemoryRouter})
         const clicker = screen.getByRole('clicker');
         userEvent.click(clicker)
         expect(handleClick).toBeTruthy();

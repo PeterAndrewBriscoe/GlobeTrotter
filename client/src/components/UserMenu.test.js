@@ -18,11 +18,20 @@ describe('UserMenu', () => {
         const menuItem = screen.getAllByRole('menu-item')
         expect(menuItem).toBeInstanceOf(Array) 
     })
+    test('there is a hide button', () => {
+        render(<UserMenu />, { wrapper: MemoryRouter });
+        const hide = screen.getByTestId('hide')
+        userEvent.click(hide)
+        const menuItem = screen.getByTestId('historyButton')
+        expect(menuItem).toBeInTheDocument()
+    });
     test('the button calls a function when clicked', () => {
         render(<UserMenu />, { wrapper: MemoryRouter });
         let handleLogout = jest.fn()
-        const menuItem = screen.getByText('Logout')
-        menuItem.simulate('click')
+        const hide = screen.getByTestId('hide')
+        userEvent.click(hide)
+        const menuItem = screen.getByTestId('historyButton')
+        userEvent.click(menuItem)
         expect(handleLogout).toBeCalled()
     });
     test('their is a logout button', () => {

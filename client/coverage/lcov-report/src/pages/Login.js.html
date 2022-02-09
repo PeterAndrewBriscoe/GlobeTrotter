@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.69% </span>
+                <span class="strong">60.86% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/23</span>
+                <span class='fraction'>14/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.69% </span>
+                <span class="strong">60.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/23</span>
+                <span class='fraction'>14/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -136,41 +136,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,14 +203,14 @@ import Tab from '../components/Tab'
 &nbsp;
 function Login() {
 	const navigate = useNavigate()
-	const { setUserData } = useContext(Context)
-	const [mode, setMode] = <span class="cstat-no" title="statement not covered" >useState('Login')</span>
-	const [output, setOutput] = <span class="cstat-no" title="statement not covered" >useState('')</span>
-	const [formData, setFormData] = <span class="cstat-no" title="statement not covered" >useState({ username: '', email: '', password: '', confPassword: ''})</span>
+	const setUserData  = useContext(Context)
+	const [mode, setMode] = useState('Login')
+	const [output, setOutput] = useState('')
+	const [formData, setFormData] = useState({ username: '', email: '', password: '', confPassword: ''})
 	  
-	async function <span class="fstat-no" title="function not covered" >authUser(</span>) {
-<span class="cstat-no" title="statement not covered" >		try {</span>
-			const trotter = <span class="cstat-no" title="statement not covered" >GlobeTrotter()</span>
+	async function authUser() {
+		try {
+			const trotter = GlobeTrotter()
 			const res = <span class="cstat-no" title="statement not covered" >await trotter.loginRegUser(formData, mode)</span>
 <span class="cstat-no" title="statement not covered" >			if(res.token) {</span>
 <span class="cstat-no" title="statement not covered" >				localStorage.setItem('globeTrotterToken', res.token)</span>
@@ -219,24 +219,24 @@ function Login() {
 			}
 <span class="cstat-no" title="statement not covered" >			navigate('/')</span>
 		} catch(e) {
-<span class="cstat-no" title="statement not covered" >			setOutput(e.message)</span>
+			setOutput(e.message)
 		}
 	}
 &nbsp;
-	const handleFormSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		e.preventDefault()</span>
-<span class="cstat-no" title="statement not covered" >		if(mode === 'Register' &amp;&amp; formData.password !== formData.confPassword)</span>
+	const handleFormSubmit = e =&gt; {
+		e.preventDefault()
+		<span class="missing-if-branch" title="if path not taken" >I</span>if(mode === 'Register' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >formData.password !== formData.confPassword)</span>
 <span class="cstat-no" title="statement not covered" >			return setOutput('Passwords do not match')</span>
-<span class="cstat-no" title="statement not covered" >		authUser()</span>
+		authUser()
 	}
 &nbsp;
-	const handleInput = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
+	const handleInput = <span class="fstat-no" title="function not covered" >e </span>=&gt; {
 		const { name, value } = <span class="cstat-no" title="statement not covered" >e.target</span>
 <span class="cstat-no" title="statement not covered" >		setFormData({ ...formData, [name]: value})</span>
 	}
 	
 	  
-<span class="cstat-no" title="statement not covered" >	return (</span>
+	return (
 		&lt;div className='w3-content w3-container'&gt;
 			&lt;div className='w3-padding-64'&gt;&lt;/div&gt;
 			&lt;form className='w3-row' onSubmit={handleFormSubmit}&gt;
@@ -245,14 +245,14 @@ function Login() {
 				&lt;div className='w3-container'&gt;&lt;/div&gt;
 				&lt;input className="w3-input w3-margin-top" type="text" name="username" value={formData.username} onChange={handleInput} placeholder='username' required /&gt;
 				{ mode === 'Register' &amp;&amp;
-					&lt;input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='email' required /&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >					&lt;input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='email' required /&gt;</span>
 				}
 				&lt;input className="w3-input w3-margin-top" type="password" name="password" value={formData.password} onChange={handleInput} placeholder='password' required /&gt;
 				{ mode === 'Register' &amp;&amp;
-					&lt;input className="w3-input w3-margin-top" type="password" name="confPassword" value={formData.confPassword} onChange={handleInput} placeholder='confirm password' required /&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >					&lt;input className="w3-input w3-margin-top" type="password" name="confPassword" value={formData.confPassword} onChange={handleInput} placeholder='confirm password' required /&gt;</span>
 				}
 				&lt;div className='w3-padding-large'&gt;&lt;/div&gt;
-				&lt;input className="w3-btn w3-mobile w3-round-large w3-blue w3-margin-top" type="submit" value="Go"&gt;&lt;/input&gt;
+				&lt;input className="w3-btn w3-mobile w3-round-large w3-blue w3-margin-top" type="submit" data-testid="submit" value="Go"&gt;&lt;/input&gt;
 			&lt;/form&gt;
 			&lt;div className='w3-panel w3-center w3-text-red'&gt;
 				&lt;h4&gt;{output}&lt;/h4&gt;
@@ -268,7 +268,7 @@ export default Login</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Feb 09 2022 12:06:12 GMT+0000 (Greenwich Mean Time)
+                at Wed Feb 09 2022 12:50:14 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

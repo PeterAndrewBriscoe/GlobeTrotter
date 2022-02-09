@@ -26,7 +26,13 @@ describe('ListItem', () => {
     });
     test('it makes a post request', () => {
         render(<FlightForm />, {wrapper: MemoryRouter})
-        const submit = screen.getByRole('submit')
+        const submit = screen.getByTestId('submit')
+        userEvent.click(submit)
+        expect(axios.post).toHaveBeenCalled();
+    });
+    test('it lets you submit', () => {
+        render(<FlightForm />, {wrapper: MemoryRouter})
+        const submit = screen.getByTestId('submit')
         userEvent.click(submit)
         expect(axios.post).toHaveBeenCalled();
     });

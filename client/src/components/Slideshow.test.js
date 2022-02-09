@@ -15,11 +15,11 @@ describe('ResultItem', () => {
         expect(div).toBeInTheDocument();
     });
     test('it renders ', () => {
-        let handleClick = jest.fn()
+        // let handleClick = jest.fn()
         render(<Slideshow />, {wrapper: MemoryRouter})
-        const clicker = screen.getByRole('clicker');
+        const clicker = screen.getByTestId('button1');
         userEvent.click(clicker)
-        expect(handleClick).toBeTruthy();
+        // expect(handleClick).toBeTruthy();
     });
 
     
