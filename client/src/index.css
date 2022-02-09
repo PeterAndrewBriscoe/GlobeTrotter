@@ -7,8 +7,31 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
+  height: 100%;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
 }
 
+html { 
+  background: url("https://wallpaperaccess.com/full/2558319.jpg") no-repeat center center fixed; 
+  /* background: url("https://cdn.wallpapersafari.com/89/40/8N3LCV.jpg") no-repeat center center fixed;  */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#logo{
+  height:100px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+#welcome-message{
+  color: white;
+  margin-top: -5px;
+}
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -45,7 +68,7 @@ h1, h3{
   row-gap: 2.5%;
   width: 80%;
   margin-left: -1%;
-  margin-bottom: 20px;
+  margin-bottom: 120px;
 }
 
 .result-item{
@@ -98,11 +121,14 @@ h1, h3{
 }
 
 #option-form{
-  border: 1px rgb(97, 145, 97) solid;
-  background-color: #b7d6c0;
+  /* border: 1px rgb(97, 145, 97) solid; */
+  background-color: #087436;
+  box-shadow: 2px 2px 2px #808080;
   border-radius: 10px;
   margin: 0% 5% 0% 5%;
   padding: 20px;
+  color: white;
+  
 }
 
 #option-form>div>input[type=submit]{
@@ -112,7 +138,7 @@ h1, h3{
   padding: 8px;
   font-size: 110%;
   color: white;
-  background-color:rgb(97, 145, 97);
+  background-color:#065828;
   transition: background-color 0.2s;
   transition: box-shadow 0.2s;
   border-radius: 5px;
@@ -120,7 +146,7 @@ h1, h3{
 
 #option-form>div>input[type=submit]:hover{
   cursor: pointer;
-  background-color:rgb(71, 117, 71);
+  background-color:#044621;
   box-shadow: rgb(42, 85, 29) 1px 1px 1px ;
 }
 
@@ -137,7 +163,7 @@ h1, h3{
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.192);
+  background-color: rgba(255, 255, 255, 0.103);
 }
 
 .option-box>div>input[type=checkbox]{
@@ -204,7 +230,7 @@ i{
   appearance: none;
   width: 13px;
   height: 13px;
-  background: #025a3a;
+  background: #033016;
   cursor: pointer;
   border-radius: 25%;
 }
@@ -215,8 +241,9 @@ i{
   align-items: center;
   justify-self: center;
   justify-content: center;
-  border: 1px #97773c solid;
-  background-color: 	#e9b85d;
+  /* border: 1px #97773c solid; */
+  box-shadow: 2px 2px 2px #808080;
+  background-color: 	#e0a435;
   width: 80%;
   margin: 2% 2% 2% 2%;
   padding: 2% 2% 2% 2%;

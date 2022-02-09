@@ -113,7 +113,6 @@ const Search = ({}) => {
 	return (
 		<>
 		<div>
-			<h3>Select from the criteria below to find your perfect holiday destination!</h3>
 			<Options getResults={getResults}/>
 			{checkDataExists()}
 		</div>
