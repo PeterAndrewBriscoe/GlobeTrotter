@@ -91,9 +91,12 @@ const Weather = ({locations, handleSelect}) => {
         <>
         <div className="flex-container">
         <form id="weather-form" onSubmit={getTemperatures}>
-            <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/>Temperature
-            <i className="fas fa-sun"></i>
-            {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
+            <div id="weather-form-div1">
+                <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/> Temperature
+                <i className="fas fa-sun"></i>
+                {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" id="weather-slider" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
+            </div>
+            <div>
             {temperature?   <select name="month" onChange={handleMonth}>
                                 <option value="1">January</option>
                                 <option value="2">February</option>
@@ -110,6 +113,7 @@ const Weather = ({locations, handleSelect}) => {
                             </select>
                             : <></>}
             {temperature? <input type="submit"></input> : <></>}
+            </div>
         </form>
         </div>
         <div> 

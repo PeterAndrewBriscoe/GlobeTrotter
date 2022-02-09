@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const FlightForm = () => {
+const FlightForm = (destinationName) => {
     
     const [origins, setOrigins] = useState([])
     const [destinations, setDestinations] = useState([])
@@ -10,7 +10,7 @@ const FlightForm = () => {
     const [children, setChildren] = useState()
     const [outDate, setOutDate] = useState()
     const [returnDate, setReturnDate] = useState()
-    
+
     const [destinationCode, setDestinationCode]= useState()
     const [originCode, setOriginCode]= useState()
 
@@ -23,7 +23,7 @@ const FlightForm = () => {
         setDestinationCode(null)
         setUrl(null)
         e.preventDefault()
-        const body = {'destination': 'Los Angeles', 'origin': e.target[0].value }
+        const body = {'destination': destinationName.destinationName, 'origin': e.target[0].value }
         const results = await axios.post("http://localhost:8000/airports/", body)
         const potential_destinations = []
         const potential_origins = []

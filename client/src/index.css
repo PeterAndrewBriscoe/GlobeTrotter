@@ -18,6 +18,10 @@ input{
   margin: 0.4%;
 }
 
+input:hover{
+  cursor: pointer;
+}
+
 #heading{
   font-size: 250%;
   margin-bottom: -2%;
@@ -94,10 +98,10 @@ h1, h3{
 }
 
 #option-form{
-  border: 1px green solid;
+  border: 1px rgb(97, 145, 97) solid;
   background-color: #b7d6c0;
   border-radius: 10px;
-  margin: 0% 2% 0% 2%;
+  margin: 0% 5% 0% 5%;
   padding: 20px;
 }
 
@@ -107,6 +111,17 @@ h1, h3{
   margin-top: 1.4%;
   padding: 8px;
   font-size: 110%;
+  color: white;
+  background-color:rgb(97, 145, 97);
+  transition: background-color 0.2s;
+  transition: box-shadow 0.2s;
+  border-radius: 5px;
+}
+
+#option-form>div>input[type=submit]:hover{
+  cursor: pointer;
+  background-color:rgb(71, 117, 71);
+  box-shadow: rgb(42, 85, 29) 1px 1px 1px ;
 }
 
 #options-grid{
@@ -114,36 +129,46 @@ h1, h3{
   grid-template-columns: 24% 24% 24% 24%;
   column-gap: 1.33333%;
   row-gap: 15px;
-  font-size: large;
+  font-size: 130%;
 }
 
 .option-box{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.192);
 }
 
 .option-box>div>input[type=checkbox]{
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-bottom: 35px;
 }
 
-#options-grid>div>input[type=range]{
-  margin-top: 35px;
-  position: absolute;
-}
-
-#weather-form{
+.option-box>input[type=range]{
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-self: center;
-  justify-content: center;
-  border: 1px #97773c solid;
-  background-color: 	#e9b85d;
-  width: 80%;
-  margin: 2% 2% 2% 2%;
-  padding: 2% 2% 2% 2%;
-  border-radius: 10px;
+  margin-top: 40px;
+  position: absolute;
+  margin-left: 3%;
+  width: 15%;
+}
+
+@media screen and (max-width: 950px){
+  #options-grid{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 1.33333%;
+    row-gap: 15px;
+    font-size: 130%;
+  }
+  .option-box>input[type=range]{
+    text-align: center;
+    margin-top: 40px;
+    position: absolute;
+    margin-left: 3%;
+    width: 35%;
+  }
 }
 
 input[type=checkbox]{
@@ -158,12 +183,6 @@ i{
 #options-grid>div{
   margin: 0% 2% 2% 2%;
 }
-
-/* .slider{
-  margin-bottom: -20px;
-  outline: none;
-  background-color: #04AA6D;
-} */
 
 .slider {
   -webkit-appearance: none;
@@ -188,6 +207,100 @@ i{
   background: #025a3a;
   cursor: pointer;
   border-radius: 25%;
+}
+
+#weather-form{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  border: 1px #97773c solid;
+  background-color: 	#e9b85d;
+  width: 80%;
+  margin: 2% 2% 2% 2%;
+  padding: 2% 2% 2% 2%;
+  border-radius: 10px;
+  font-size: 130%;
+}
+
+#weather-form>div>input[type=checkbox]{
+  margin-right: 2%;
+}
+
+.fa-sun{
+  margin-left: 1%;
+}
+
+#weather-form>div{
+  display:flex;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+}
+
+#weather-form>div>select{
+  outline: none;
+  border: none;
+  padding: 3px;
+  font-size: 100%;
+  margin: 0px 15px 0px 25px;
+}
+
+#weather-form>div>input[type=submit]{
+  text-align: center;
+  border: none;
+  padding: 8px;
+  font-size: 14pt;
+  color: white;
+  background-color:rgba(161, 110, 0, 0.616);
+  transition: background-color 0.2s;
+  transition: box-shadow 0.2s;
+  border-radius: 5px;
+}
+
+#weather-form>div>input[type=submit]:hover{
+  cursor: pointer;
+  background-color:rgb(151, 104, 8);
+  box-shadow: rgb(85, 67, 29) 1px 1px 1px ;
+}
+
+#weather-slider {
+  -webkit-appearance: none;
+  width: auto;
+  height: 8px;
+  background: #ffffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-left: 10px;
+}
+
+#weather-slider:hover {
+  opacity: 1;
+}
+
+#weather-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  background: #775b01;
+  cursor: pointer;
+  border-radius: 25%;
+}
+
+@media screen and (max-width: 715px) {
+  #weather-form{
+    flex-direction: column;
+  }
+  #weather-form>div>select{
+    margin: 5px 10px 0px 10px;
+  }
+  #weather-form>div>input[type=submit]{
+    margin: 5px 10px 0px 10px;
+  }
 }
 
 #option-form > div > i{

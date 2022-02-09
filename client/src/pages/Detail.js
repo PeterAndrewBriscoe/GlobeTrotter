@@ -86,7 +86,7 @@ function Detail() {
 			{/* <div>
 				<DateRangePicker onChange={onChange} value={value} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
 			</div> */}
-			<FlightForm/>
+			<FlightForm destinationName={placeData.name}/>
 			{ userData &&
 			<div>
 				<button onClick={handleSave} disabled={!placeDataEdit.new}>Save</button>
