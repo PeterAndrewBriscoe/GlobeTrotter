@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const FlightForm = () => {
+const FlightForm = (props) => {
     
     const [origins, setOrigins] = useState([])
     const [destinations, setDestinations] = useState([])
 
     const [adults, setAdults] = useState()
     const [children, setChildren] = useState()
-    const [outDate, setOutDate] = useState()
-    const [returnDate, setReturnDate] = useState()
+    //const [outDate, setOutDate] = useState()
+    //const [returnDate, setReturnDate] = useState()
     
     const [destinationCode, setDestinationCode]= useState()
-    const [originCode, setOriginCode]= useState()
+    const [originCode, setOriginCode]= useState()//props.flighForm.origin)
 
     const [url, setUrl]=useState()
     const [searches, setSearches]=useState(0)
@@ -23,7 +23,8 @@ const FlightForm = () => {
         setDestinationCode(null)
         setUrl(null)
         e.preventDefault()
-        const body = {'destination': 'Los Angeles', 'origin': e.target[0].value }
+        console.log(props.destination)
+        const body = {'destination': props.destination, 'origin': e.target[0].value }
         const results = await axios.post("http://localhost:8000/airports/", body)
         const potential_destinations = []
         const potential_origins = []
@@ -50,17 +51,23 @@ const FlightForm = () => {
             setDestinationCode(null)
         }
 
-        setAdults(e.target[3].value)
-        setChildren(e.target[4].value)
+        let parsedOutDate = props.dates[0].toISOString()
+        parsedOutDate = parsedOutDate.substring(2, 10).replace(/-/g, '')
+        let parsedRtnDate = props.dates[1].toISOString()
+        parsedRtnDate = parsedRtnDate.substring(2, 10).replace(/-/g, '')
+
+        setAdults(e.target[1].value)
+        setChildren(e.target[2].value)
 
         //format date correctly ready for URL
-        let formattedOutDate = e.target[1].value.substring(2).replace(/-/g,'')
+        /*let formattedOutDate = e.target[1].value.substring(2).replace(/-/g,'')
         let formattedReturnDate = e.target[2].value.substring(2).replace(/-/g,'')
         setOutDate(formattedOutDate)
-        setReturnDate(formattedReturnDate)
+        setReturnDate(formattedReturnDate)*/
         console.log(originCode)
+        
         if(originCode && destinationCode){
-            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${outDate}/${returnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
+            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${parsedOutDate}/${parsedRtnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
             setUrl(url)
         }
     }
@@ -80,7 +87,11 @@ const FlightForm = () => {
         }
 
         if(originCode && destinationCode){
-            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${outDate}/${returnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
+            let parsedOutDate = props.dates[0].toISOString()
+            parsedOutDate = parsedOutDate.substring(2, 10).replace(/-/g, '')
+            let parsedRtnDate = props.dates[1].toISOString()
+            parsedRtnDate = parsedRtnDate.substring(2, 10).replace(/-/g, '')
+            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${parsedOutDate}/${parsedRtnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
             setUrl(url)
         }
         }
@@ -93,14 +104,6 @@ const FlightForm = () => {
                 <input required name="from" type="text"/>
             </>
             <>
-                <label>Outbound Date:</label>
-                <input required name="outboundDate" type="date"/>
-            </>
-            <>
-                <label>Return Date:</label>
-                <input required name="returnDate" type="date"/>
-            </>
-            <>
                 <label>Number of Adults:</label>
                 <input required name="adults" type="number" min="0" max="8"/>
             </>
@@ -108,7 +111,7 @@ const FlightForm = () => {
                 <label>Number of Children:</label>
                 <input name="children" type="number" min="0" max="8"/>
             </>
-            <input type="submit"/>
+            <input type="submit" disabled={!props.dates}/>
         </form>
         {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports">
                                             <select name="origin-list" onChange={generateLink}>
@@ -124,9 +127,14 @@ const FlightForm = () => {
                                         </form>
         : <></>}
         {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
-        {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
+        {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url} target="_blank" rel="noopener noreferrer">Click Here For Flights!</a> : <> </>}
         </div>
     )
 }
 
+
+    //<label>Outbound Date:</label>
+    //<input required name="outboundDate" type="date"/>
+    //<label>Return Date:</label>
+    //<input required name="returnDate" type="date"/>
 export default FlightForm

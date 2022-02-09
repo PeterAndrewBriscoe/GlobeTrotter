@@ -16,11 +16,11 @@ function Detail() {
 	const day = 8.64e7
 	const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
 	const { placeData, userData } = useContext(Context)
-	const [placeDataEdit, setPlaceDataEdit] = useState(placeData)
+	const [flightForm, setFlightForm] = useState(initialiseForm())
+	const [isChanged, setIschanged] = useState(false)
 	const [showModal, setShowModal] = useState('none')
 	const [confirmedModal, setConfirmedModal] = useState(false)
-	//const [flightData, setFlightData] = useState(placeData ? placeData.flightData : '')
-	const [value, onChange] = useState()
+	const [dates, changeDates] = useState()
 	
 	const navigate = useNavigate()
 	/*
@@ -31,6 +31,13 @@ function Detail() {
 		lang: 'en',
 		unit: 'metric', // values are (metric, standard, imperial)
 	})*/
+
+	function initialiseForm() {
+		if(placeData && placeData.flightForm)
+			return {...placeData.flightForm }
+		else
+			return ''
+	}
 
 	useEffect(() => {
 		if(!placeData)
@@ -95,13 +102,13 @@ function Detail() {
 				<a href={`https://www.bing.com/maps?cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&amp;sty=r&amp;lvl=10&amp;FORM=MBEDLD`} target="_blank" rel="noopener noreferrer">View Larger Map</a>
 			</div>
 			{<div>
-				<DateRangePicker onChange={onChange} value={value} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
+				<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
 			</div> }
-			<FlightForm/>
+			<FlightForm flightForm={flightForm, setFlightForm} destination={placeData.name} dates={dates}/>
 			{ userData &&
 			<div>
-				<button onClick={handleSave} disabled={!placeDataEdit.new}>Save</button>
-				{!placeDataEdit.new && <button onClick={showDeleteModal}>Delete</button>}
+				<button onClick={handleSave} disabled={isChanged}>Save</button>
+				{placeData.saved && <button onClick={showDeleteModal}>Delete</button>}
 			</div>
 			}
 			<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
