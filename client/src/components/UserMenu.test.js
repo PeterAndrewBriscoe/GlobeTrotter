@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, useNavigate } from 'react-router-dom';
 import Header from './Navbar';
 import UserMenu from './UserMenu';
 import userEvent from '@testing-library/user-event';
@@ -15,7 +15,9 @@ describe('UserMenu', () => {
     })
     test('it renders a menu',()=>{
         render(<UserMenu />, { wrapper: MemoryRouter });
-        const menuItem = screen.getAllByRole('menu-item')
+        const hide = screen.getByTestId('hide')
+        userEvent.click(hide)
+        const menuItem = screen.getAllByRole('listitem')
         expect(menuItem).toBeInstanceOf(Array) 
     })
     test('there is a hide button', () => {
@@ -27,18 +29,20 @@ describe('UserMenu', () => {
     });
     test('the button calls a function when clicked', () => {
         render(<UserMenu />, { wrapper: MemoryRouter });
-        let handleLogout = jest.fn()
+        let navigate = jest.fn()
         const hide = screen.getByTestId('hide')
         userEvent.click(hide)
         const menuItem = screen.getByTestId('historyButton')
         userEvent.click(menuItem)
-        expect(handleLogout).toBeCalled()
+        expect(navigate).toBeCalled()
     });
     test('their is a logout button', () => {
         render(<UserMenu/>, { wrapper: MemoryRouter });
         let handleLogout = jest.fn()
+        const hide = screen.getByTestId('hide')
+        userEvent.click(hide)
         const menuItem = screen.getByRole('Logout')
-        menuItem.simulate('click')
+        userEvent.click(menuItem)
         expect(handleLogout).toBeCalled()
     });
 })
