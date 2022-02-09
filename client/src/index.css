@@ -156,6 +156,7 @@ h1, h3{
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   column-gap: 1.33333%;
+  margin-left: -0.55%;
   row-gap: 15px;
   font-size: 130%;
 }

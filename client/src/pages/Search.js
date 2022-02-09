@@ -86,12 +86,12 @@ const Search = ({}) => {
 	function checkDataExists(){
 		if(formSubmitted && results){
 			if(loading){
-				return <div class="flex-container">
-				<div className="loading-div">
-					<h3 className="loading-message">Loading...</h3>
-					<div class="loader"></div>
-				</div>
-			</div>
+				return 	<div class="flex-container">
+							<div className="loading-div">
+								<h3 className="loading-message">Loading...</h3>
+									<div class="loader"></div>
+							</div>
+						</div>
 			}
 			else{
 				if(results.length>0){
@@ -104,12 +104,12 @@ const Search = ({}) => {
 		}
 		else if(formSubmitted && !results){
 			if(loading){
-				return <div class="flex-container">
-				<div className="loading-div">
-					<h3 className="loading-message">Loading...</h3>
-					<div class="loader"></div>
-				</div>
-			</div>
+				return 	<div class="flex-container">
+							<div className="loading-div">
+								<h3 className="loading-message">Loading...</h3>
+								<div class="loader"></div>
+							</div>
+						</div>
 			}
 			else{
 				return <h3>No locations found with those criteria</h3>
