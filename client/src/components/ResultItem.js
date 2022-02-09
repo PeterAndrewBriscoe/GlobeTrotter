@@ -14,7 +14,7 @@ const ResultItem = ({location}) => {
 
     return(
 
-        <div onClick={handleClick} className="result-item" key={location.id}>
+        <div onClick={handleClick} className="result-item" key={location.id} role='clicker'>
             <h4> {location.name} - {(Math.round(location.averageMetricScore * 100) / 100).toFixed(2)} </h4>
         </div>
 

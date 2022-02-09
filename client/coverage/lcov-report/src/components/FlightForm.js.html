@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.81% </span>
+                <span class="strong">32.72% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/55</span>
+                <span class='fraction'>18/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.05% </span>
+                <span class="strong">26.31% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/38</span>
+                <span class='fraction'>10/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>2/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.81% </span>
+                <span class="strong">32.72% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/55</span>
+                <span class='fraction'>18/55</span>
             </div>
         
             
@@ -197,25 +197,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -277,7 +277,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,7 +321,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState, useEffect} from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from 'react';
 import axios from 'axios';
 &nbsp;
 const FlightForm = () =&gt; {
@@ -338,13 +338,13 @@ const FlightForm = () =&gt; {
     const [url, setUrl]=useState()
     const [searches, setSearches]=useState(0)
 &nbsp;
-    async function <span class="fstat-no" title="function not covered" >getAirports(</span>e){
-<span class="cstat-no" title="statement not covered" >        setSearches(searches+1)</span>
-<span class="cstat-no" title="statement not covered" >        setOriginCode(null)</span>
-<span class="cstat-no" title="statement not covered" >        setDestinationCode(null)</span>
-<span class="cstat-no" title="statement not covered" >        setUrl(null)</span>
-<span class="cstat-no" title="statement not covered" >        e.preventDefault()</span>
-        const body = <span class="cstat-no" title="statement not covered" >{'destination': 'Los Angeles', 'origin': e.target[0].value }</span>
+    async function getAirports(e){
+        setSearches(searches+1)
+        setOriginCode(null)
+        setDestinationCode(null)
+        setUrl(null)
+        e.preventDefault()
+        const body = {'destination': 'Los Angeles', 'origin': e.target[0].value }
         const results = <span class="cstat-no" title="statement not covered" >await axios.post("http://localhost:8000/airports/", body)</span>
         const potential_destinations = <span class="cstat-no" title="statement not covered" >[]</span>
         const potential_origins = <span class="cstat-no" title="statement not covered" >[]</span>
@@ -408,7 +408,7 @@ const FlightForm = () =&gt; {
 &nbsp;
     return(
         &lt;div className="flex-container"&gt;
-        &lt;form id="flight-form" onSubmit={getAirports}&gt;
+        &lt;form id="flight-form" onSubmit={getAirports} role='flight-form'&gt;
             &lt;&gt;
                 &lt;label&gt;Flight from:&lt;/label&gt;
                 &lt;input required name="from" type="text"/&gt;
@@ -429,7 +429,7 @@ const FlightForm = () =&gt; {
                 &lt;label&gt;Number of Children:&lt;/label&gt;
                 &lt;input name="children" type="number" min="0" max="8"/&gt;
             &lt;/&gt;
-            &lt;input type="submit"/&gt;
+            &lt;input type="submit" role='submit'/&gt;
         &lt;/form&gt;
         {origins.length &gt; 0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >destinations.length &gt; 0 </span>? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;form className="potential-airports"&gt;</span>
                                             &lt;select name="origin-list" onChange={generateLink}&gt;
@@ -444,8 +444,8 @@ const FlightForm = () =&gt; {
                                             &lt;/select&gt;
                                         &lt;/form&gt;
         : &lt;&gt;&lt;/&gt;}
-        {searches &gt; 0 &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >destinations.length === 0 </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >origins.length === 0)</span> ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;p&gt;Currently no flights to one or more of these airports&lt;/p&gt; </span>: &lt;&gt; &lt;/&gt;}
-        {url &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >destinations.length != 0 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >origins.length != 0)</span> ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;a href={url}&gt;Click Here For Flights!&lt;/a&gt; </span>: &lt;&gt; &lt;/&gt;}
+        {searches &gt; 0 &amp;&amp; (destinations.length === 0 || <span class="branch-2 cbranch-no" title="branch not covered" >origins.length === 0)</span> ? &lt;p&gt;Currently no flights to one or more of these airports&lt;/p&gt; : &lt;&gt; &lt;/&gt;}
+        {url &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >destinations.length !== 0 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >origins.length !== 0)</span> ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;a href={url}&gt;Click Here For Flights!&lt;/a&gt; </span>: &lt;&gt; &lt;/&gt;}
         &lt;/div&gt;
     )
 }
@@ -457,7 +457,7 @@ export default FlightForm</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Feb 08 2022 17:50:42 GMT+0000 (Greenwich Mean Time)
+                at Wed Feb 09 2022 12:06:12 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

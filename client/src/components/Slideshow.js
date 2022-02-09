@@ -20,7 +20,7 @@ function Slideshow(props) {
 			<div className="center-cropped" style={{backgroundImage: `url(${images[index].sizes.medium.url})`}}></div>
 			<h4>{images[index].caption}</h4>
 			<div className='w3-xxlarge'>
-				<i className="w3-button bi bi-caret-left-square" onClick={handleClick}></i>
+				<i className="w3-button bi bi-caret-left-square" onClick={handleClick} role='clicker'></i>
 				<i className="w3-button bi bi-caret-right-square" onClick={handleClick}></i>
 			</div>
 		</div>

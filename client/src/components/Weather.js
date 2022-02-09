@@ -109,7 +109,7 @@ const Weather = ({locations, handleSelect}) => {
                                     <option value="12">December</option>
                                 </select>
                                 : <></>}
-                {temperature? <input type="submit"></input> : <></>}
+                {temperature? <input type="submit" role='submit'></input> : <></>}
             </form>
             <div role='weather'> 
                 {/* {console.log(loading)}

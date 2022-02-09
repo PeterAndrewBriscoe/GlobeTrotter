@@ -3,6 +3,7 @@ import { default as Search } from './Search';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios'
 
 describe('Search', () => {
     let getResultMock;
@@ -37,8 +38,14 @@ describe('Search', () => {
     
     test('it tells you when there are no results', () => {
         renderWithReduxProvider(<Search />, {wrapper: MemoryRouter})
-        const error = screen.getAllByText('Nothing to see here');
+        const error = screen.getAllByText('No Results to Show');
         expect(error).toBeInstanceOf(Array);
+    });
+    test('it makes a get request', () => {
+        render(<Search />, {wrapper: MemoryRouter})
+        // const submit = screen.getByRole('submit')
+        // userEvent.click(submit)
+        expect(axios.get).toHaveBeenCalled();
     });
 
 });

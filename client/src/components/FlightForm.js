@@ -85,7 +85,7 @@ const FlightForm = () => {
 
     return(
         <div className="flex-container">
-        <form id="flight-form" onSubmit={getAirports}>
+        <form id="flight-form" onSubmit={getAirports} role='flight-form'>
             <>
                 <label>Flight from:</label>
                 <input required name="from" type="text"/>
@@ -106,7 +106,7 @@ const FlightForm = () => {
                 <label>Number of Children:</label>
                 <input name="children" type="number" min="0" max="8"/>
             </>
-            <input type="submit"/>
+            <input type="submit" role='submit'/>
         </form>
         {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports">
                                             <select name="origin-list" onChange={generateLink}>

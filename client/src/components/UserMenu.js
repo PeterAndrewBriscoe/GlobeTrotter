@@ -37,7 +37,7 @@ function UserMenu(props) {
 				<div className='user-menu'>
 					<ul>
 						<li className="menu-item" onClick={() => { setShow(false); navigate('/history')}}>History</li>
-						<li className="menu-item" onClick={handleLogout}>Logout</li>
+						<li className="menu-item" onClick={handleLogout} role='Logout'>Logout</li>
 					</ul>
 				</div>
 			}

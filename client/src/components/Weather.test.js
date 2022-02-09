@@ -21,6 +21,12 @@ describe('Weather', () => {
         submit.simulate('click')
         const results = wrapper.classList.contains('result-grid')
         expect(results).toBeTruthy()
-    })
+    });
+    test('it makes a get request', () => {
+        render(<Weather />, {wrapper: MemoryRouter})
+        const submit = screen.getByRole('submit')
+        userEvent.click(submit)
+        expect(axios.get).toHaveBeenCalled();
+    });
 
 })
