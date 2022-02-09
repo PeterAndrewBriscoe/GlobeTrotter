@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 const FlightForm = (props) => {
-    
     const [origins, setOrigins] = useState([])
     const [destinations, setDestinations] = useState([])
 
@@ -23,9 +22,9 @@ const FlightForm = (props) => {
         setDestinationCode(null)
         setUrl(null)
         e.preventDefault()
-        console.log(props.destination)
+        
         const body = {'destination': props.destination, 'origin': e.target[0].value }
-        const results = await axios.post("http://localhost:8000/airports/", body)
+        const results = await axios.post("https://globe--trotter.herokuapp.com/airports/", body)
         const potential_destinations = []
         const potential_origins = []
 
@@ -58,13 +57,18 @@ const FlightForm = (props) => {
 
         setAdults(e.target[1].value)
         setChildren(e.target[2].value)
+        props.flightForm.setFlightForm({
+            origin: parseInt(e.target[0].value),
+			adults: parseInt(e.target[2].value),
+			children: children
+        })
 
         //format date correctly ready for URL
         /*let formattedOutDate = e.target[1].value.substring(2).replace(/-/g,'')
         let formattedReturnDate = e.target[2].value.substring(2).replace(/-/g,'')
         setOutDate(formattedOutDate)
         setReturnDate(formattedReturnDate)*/
-        console.log(originCode)
+        
         
         if(originCode && destinationCode){
             const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${parsedOutDate}/${parsedRtnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
@@ -105,11 +109,11 @@ const FlightForm = (props) => {
             </>
             <>
                 <label>Number of Adults:</label>
-                <input required name="adults" type="number" min="0" max="8"/>
+                <input required name="adults" type="number" min="0" max="8" />
             </>
             <>
                 <label>Number of Children:</label>
-                <input name="children" type="number" min="0" max="8"/>
+                <input name="children" type="number" min="0" max="8" />
             </>
             <input type="submit" disabled={!props.dates}/>
         </form>

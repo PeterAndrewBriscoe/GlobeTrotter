@@ -17,10 +17,10 @@ function Detail() {
 	const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
 	const { placeData, userData } = useContext(Context)
 	const [flightForm, setFlightForm] = useState(initialiseForm())
-	const [isChanged, setIschanged] = useState(false)
+	const [output, setOutput] = useState('')
 	const [showModal, setShowModal] = useState('none')
 	const [confirmedModal, setConfirmedModal] = useState(false)
-	const [dates, changeDates] = useState()
+	const [dates, changeDates] = useState(initialiseDates())
 	
 	const navigate = useNavigate()
 	/*
@@ -32,11 +32,23 @@ function Detail() {
 		unit: 'metric', // values are (metric, standard, imperial)
 	})*/
 
+	function initialiseDates() {
+		if(placeData.flightForm) {
+			const startdate = new Date(placeData.flightForm.startdate)
+			const enddate = new Date(placeData.flightForm.enddate)
+			return [startdate, enddate]
+		}
+	}
+
 	function initialiseForm() {
 		if(placeData && placeData.flightForm)
 			return {...placeData.flightForm }
 		else
-			return ''
+			return {
+				origin: '',
+				adults: 0,
+				children: 0
+			}
 	}
 
 	useEffect(() => {
@@ -46,7 +58,7 @@ function Detail() {
 
 	useEffect(() => {
 		if(confirmedModal)
-			console.log('deleted')
+			deleteRecord()
 	}, [confirmedModal])
 
 	const tomorrow = () => {
@@ -57,12 +69,34 @@ function Detail() {
 		return new Date(Date.now() + day * 365)
 	}
 
+	async function deleteRecord() {
+		try {
+			const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
+			const res = await trotter.deleteRecord(placeData.recordId)
+			console.log(res)
+		} catch(e) {
+
+		}
+	}
+
 	async function save() {
-		const mode = ''
-		if(placeData.new)
-			mode = 'create'
+		try {
+			setOutput('saving...')
+			const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
 		
-		const res = await trotter.save(placeData.data, mode)
+			const res = await trotter.save({
+				location: placeData.id,
+				startdate: dates ? dates[0].getTime() : 0,
+				enddate: dates ? dates[1].getTime() : 0,
+				origin: flightForm.origin ? flightForm.origin : 'none',
+				adults: flightForm.adults ? flightForm.adults : 0,
+				children: flightForm.children ? flightForm.children : 0
+			})
+			setOutput('saved')
+
+		} catch(e) {
+			setOutput(e.message)
+		}
 	}
 
 	function handleSave() {
@@ -104,11 +138,11 @@ function Detail() {
 			{<div>
 				<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
 			</div> }
-			<FlightForm flightForm={flightForm, setFlightForm} destination={placeData.name} dates={dates}/>
+			<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates}/>
 			{ userData &&
 			<div>
-				<button onClick={handleSave} disabled={isChanged}>Save</button>
-				{placeData.saved && <button onClick={showDeleteModal}>Delete</button>}
+				<button onClick={handleSave}>Save</button>
+				{placeData.recordId && <button onClick={showDeleteModal}>Delete</button>}
 			</div>
 			}
 			<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
@@ -117,6 +151,7 @@ function Detail() {
 				<h2>deleting...</h2>
 			</div>
 			}
+			{ output && <h2>{output}</h2>}
 		</div>
 		}</>
 	)

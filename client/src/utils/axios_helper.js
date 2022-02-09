@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 export function GlobeTrotter(token) {
-	const axios_helper = axios.create({baseURL: "http://127.0.0.1:8000/"})
+	const axios_helper = axios.create({baseURL: "https://globe--trotter.herokuapp.com/"})
 	axios_helper.defaults.headers.common['Authorization'] = token && `Token ${token}`
 
 	async function loginRegUser(userData, mode) {
@@ -31,20 +31,49 @@ export function GlobeTrotter(token) {
 		}
 	}
 
-	async function getSaved(username) {
+	async function getSaved() {
 		try {
-			return { username, places: [{name: 'london', long: 32, lat: 34 }, {name: 'rome', long: 32, lat: 34 }, {name: 'berlin', long: 32, lat: 34 }] }
+			const res = await axios_helper.get('api/')
+			return res.data
 		} catch(e) {
 		}
 	}
 
-	async function save(data, mode) {
+	async function save(data) {
 		try {
-			//const res = await axios_helper.post('/api', userData)
-			return ({saveData: data, mode})
+			const res = await axios_helper.post('api/', data)
+			return (res.data)
+		} catch(e) {
+		}
+	}
+
+	async function deleteRecord(recordId) {
+		try {
+			console.log(recordId)
+			const res = await axios_helper.delete('api/', { id: recordId })
+			return (res)
 		} catch(e) {
 		}
 	}
 	
-	return { loginRegUser, logout, getSaved, save }
+	return { loginRegUser, logout, getSaved, save, deleteRecord }
+}
+
+export function Triposo() {
+	const apiToken = "3f71d5kylylwplhj7wu5ikwa4yds3dlj"
+	const accountId = "IG3CBP2Q"
+	//const axios_helper = //axios.create({baseURL: "https://triposo.com/api/20220104/"})//${lopj}"})
+
+	async function getLocation(location) {
+		try {
+			console.log('fetch')
+			const res = await axios.get(`https://www.triposo.com/api/20220104/location.json?id=${location}&account=IG3CBP2Q&token=3f71d5kylylwplhj7wu5ikwa4yds3dlj`)//await axios_helper.get(`location.json?id=${location}&account=${accountId}&token=${apiToken}`)
+			console.log('data:' + res.data)
+			return res.data
+		} catch(e) {
+			console.log(e.message)
+		}
+	}
+
+	return getLocation
 }
