@@ -6,7 +6,7 @@ import ListItem from '../components/ListItem'
 
 function History() {
 	const navigate = useNavigate()
-	const { userData } = useContext(Context)
+	const userData = useContext(Context)
 	const [list, setList] = useState('')
 
 	useEffect(() => {

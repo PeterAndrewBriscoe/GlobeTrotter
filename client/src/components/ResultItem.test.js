@@ -22,5 +22,15 @@ describe('ResultItem', () => {
         userEvent.click(clicker)
         expect(handleClick).toBeTruthy();
     });
+
+    test('it lets you click ', () => {
+        let handleClick= onclick
+        let setPlaceData = jest.fn()
+        setPlaceData()
+        render(<ResultItem location={'New York'}/>, {wrapper: MemoryRouter})
+        const clicker = screen.getByRole('clicker');
+        userEvent.click(clicker)
+        expect(window.location.href).toEqual('http://localhost/');
+    });
     
 })

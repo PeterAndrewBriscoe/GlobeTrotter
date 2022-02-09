@@ -88,19 +88,19 @@ const FlightForm = () => {
         <form id="flight-form" onSubmit={getAirports} role='flight-form'>
             <>
                 <label>Flight from:</label>
-                <input required name="from" type="text"/>
+                <input required name="from" type="text" data-testid='form'/>
             </>
             <>
                 <label>Outbound Date:</label>
-                <input required name="outboundDate" type="date"/>
+                <input required name="outboundDate" type="date" data-testid='outboundDate'/>
             </>
             <>
                 <label>Return Date:</label>
-                <input required name="returnDate" type="date"/>
+                <input required name="returnDate" type="date" data-testid='returnDate' />
             </>
             <>
                 <label>Number of Adults:</label>
-                <input required name="adults" type="number" min="0" max="8"/>
+                <input required name="adults" type="number" min="0" max="8" data-testid="adults"/>
             </>
             <>
                 <label>Number of Children:</label>
@@ -108,14 +108,14 @@ const FlightForm = () => {
             </>
             <input type="submit" role='submit' data-testid='submit'/>
         </form>
-        {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports">
+        {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports" data-testid="potential-origins">
                                             <select name="origin-list" onChange={generateLink}>
                                                 <option value="">Select Airport</option>
                                                 {origins.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
                                             </select>
                                 </form>
         : <></>}
-        {destinations.length > 0 && origins.length > 0 ? <form className="potential-airports">
+        {destinations.length > 0 && origins.length > 0 ? <form className="potential-airports" data-testid="potential-destinations">
                                             <select name="destination-list" onChange={generateLink}>
                                                 {destinations.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
                                             </select>

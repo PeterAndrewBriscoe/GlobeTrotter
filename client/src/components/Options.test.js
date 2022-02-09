@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Options from './Options';
 import userEvent from '@testing-library/user-event';
@@ -94,6 +94,46 @@ describe('Options', () => {
         let slider =  screen.getByTestId("nightlifeValue")
         expect(slider).toBeInTheDocument()
     });
+    test('it renders with nightlife category', async () => {
+        let getResults= jest.fn()
+        render(<Options getResults={getResults} />, {wrapper: MemoryRouter})
+        const checkbox = screen.getAllByRole('checkbox')
+        const nightlife = checkbox[7]
+        await userEvent.click(nightlife)
+        let submit =  screen.getByRole("submitbtn")
+        userEvent.click(submit)
+        expect(submit).toBeInTheDocument()
+    });
+    test('it has sliders', async () => {
+        let getResults= jest.fn()
+        render(<Options getResults={getResults} />, {wrapper: MemoryRouter})
+        const checkbox = screen.getAllByRole('checkbox')
+        const nightlife = checkbox[7]
+        await userEvent.click(nightlife)
+        let slider =  screen.getByTestId("nightlifeValue")
+        fireEvent.change(slider, {target: {value: 7}})
+        expect(slider).toBeInTheDocument()
+    });
+    test('it has sliders', async () => {
+        let getResults= jest.fn()
+        render(<Options getResults={getResults} />, {wrapper: MemoryRouter})
+        const checkbox = screen.getAllByRole('checkbox')
+        const hiking = checkbox[6]
+        await userEvent.click(hiking)
+        let slider =  screen.getByTestId("hikingValue")
+        fireEvent.change(slider, {target: {value: 7}})
+        expect(slider).toBeInTheDocument()
+    });
     
+    // test('it calls getResults when submitted', () => {
+    //     render(<Options getResults={getResults} />, {wrapper: MemoryRouter})
+    //     // const getTemperatures = jest.fn()
+    //     const submit = screen.getByRole('submitbtn')
+    //     const checkbox = screen.getAllByRole('checkbox')
+    //     const nightlife = checkbox[7]
+    //     await userEvent.click(nightlife)
+    //     userEvent.click(submit)
 
+    //     // expect(getTemperatures(submit)).toHaveBeenCalled();
+    // })
 })

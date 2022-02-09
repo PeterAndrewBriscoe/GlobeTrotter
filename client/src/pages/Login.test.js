@@ -18,9 +18,17 @@ describe('Login', () => {
     });
     test('it submits a form', () => {
         render(<Login />, {wrapper: MemoryRouter})
+        const authUser = jest.fn()
         const submit = screen.getByTestId('submit');
         userEvent.click(submit)
-        // expect().toBeInTheDocument();
+        expect(authUser).toHaveBeenCalled();
+    });
+    test('it lets you put in a username', () => {
+        render(<Login />, {wrapper: MemoryRouter})
+
+        const username = screen.getByTestId('username');
+        userEvent.type(username)
+        // expect(authUser).toHaveBeenCalled();
     });
 
 

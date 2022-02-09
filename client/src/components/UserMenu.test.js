@@ -10,6 +10,7 @@ configure({ adapter: new Adapter() });
 describe('UserMenu', () => {
     test('it renders a User Menu', () => {
         render(<UserMenu />, { wrapper: MemoryRouter });
+        UserMenu = jest.fn()
         // const UserMenu = screen.queryByRole('navigation');
         expect(UserMenu).toHaveBeenCalled();
     })
@@ -36,7 +37,7 @@ describe('UserMenu', () => {
         userEvent.click(menuItem)
         expect(navigate).toBeCalled()
     });
-    test('their is a logout button', () => {
+    test('there is a logout button', () => {
         render(<UserMenu/>, { wrapper: MemoryRouter });
         let handleLogout = jest.fn()
         const hide = screen.getByTestId('hide')

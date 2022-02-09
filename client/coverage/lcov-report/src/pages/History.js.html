@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,23 +107,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,27 +145,27 @@ import ListItem from '../components/ListItem'
 &nbsp;
 function History() {
 	const navigate = useNavigate()
-	const { userData } = useContext(Context)
-	const [list, setList] = <span class="cstat-no" title="statement not covered" >useState('')</span>
+	const userData = useContext(Context)
+	const [list, setList] = useState('')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+	useEffect(() =&gt; {
 		async function <span class="fstat-no" title="function not covered" >getData(</span>) {
 			const trotter = <span class="cstat-no" title="statement not covered" >GlobeTrotter(localStorage.getItem('globeTrotterToken'))</span>
 			const data = <span class="cstat-no" title="statement not covered" >await trotter.getSaved(userData)</span>
 <span class="cstat-no" title="statement not covered" >			return setList(data.places)</span>
 		}
-<span class="cstat-no" title="statement not covered" >		if(userData)</span>
+		<span class="missing-if-branch" title="if path not taken" >I</span>if(userData)
 <span class="cstat-no" title="statement not covered" >			getData()</span>
 		else
-<span class="cstat-no" title="statement not covered" >			navigate('/')</span>
+			navigate('/')
 	}, [])
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return (</span>
+	return (
 		&lt;div&gt;
 			&lt;h2&gt;History&lt;/h2&gt;
 			&lt;div&gt;
 			{ list &amp;&amp;
-         	&lt;div className="w3-container"&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >         	&lt;div className="w3-container"&gt;</span>
               	{list.map(<span class="fstat-no" title="function not covered" >(e</span>, i)=&gt; <span class="cstat-no" title="statement not covered" >&lt;ListItem key={`place${i}`} data={e} /&gt;)</span>}
             &lt;/div&gt;
          }
@@ -181,7 +181,7 @@ export default History</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Feb 09 2022 14:10:46 GMT+0000 (Greenwich Mean Time)
+                at Wed Feb 09 2022 18:00:36 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

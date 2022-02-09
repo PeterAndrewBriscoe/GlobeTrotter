@@ -46,7 +46,7 @@ function Login() {
 				<Tab modeState={{mode, setMode}} title='Login' />
 				<Tab modeState={{mode, setMode}} title='Register' />
 				<div className='w3-container'></div>
-				<input className="w3-input w3-margin-top" type="text" name="username" value={formData.username} onChange={handleInput} placeholder='username' required />
+				<input className="w3-input w3-margin-top" type="text" name="username" data-setid='username' value={formData.username} onChange={handleInput} placeholder='username' required />
 				{ mode === 'Register' &&
 					<input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='email' required />
 				}

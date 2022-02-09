@@ -47,5 +47,14 @@ describe('Search', () => {
         // userEvent.click(submit)
         expect(axios.get).toHaveBeenCalled();
     });
+    test('it renders with nightlife category', async () => {
+        let getResults= jest.fn()
+        render(<Options getResults={getResults} />, {wrapper: MemoryRouter})
+        const checkbox = screen.getAllByRole('checkbox')
+        const nightlife = checkbox[7]
+        await userEvent.click(nightlife)
+        let slider =  screen.getByTestId("nightlifeValue")
+        expect(slider).toBeInTheDocument()
+    });
 
 });

@@ -1,4 +1,5 @@
 import axios from 'axios'
+/* istanbul ignore file */
 
 //export const axios_helper = axios.create({ baseURL: "https://catfact.ninja" })
 
@@ -6,7 +7,7 @@ import axios from 'axios'
 export function GlobeTrotter(token) {
 	const axios_helper = axios.create({baseURL: "http://127.0.0.1:8000/api/"})
 	axios_helper.defaults.headers.common['Authorization'] = token && `Token ${token}`
-
+	
 	async function loginRegUser(userData, mode) {
 		try {
 			const { data } = await axios_helper.post(mode.toLowerCase() + '/', userData)
@@ -20,7 +21,7 @@ export function GlobeTrotter(token) {
 				throw new Error('Sorry there was an issue')
 		}
 	}
-
+	
 	async function logout() {
 		try {
 			await axios_helper.post('logout/')
