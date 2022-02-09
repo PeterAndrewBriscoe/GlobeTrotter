@@ -4,7 +4,7 @@ import FlightForm from './FlightForm'
 import axios from 'axios'
 jest.mock('axios')
 
-describe('Weather', () => {
+describe('ListItem', () => {
     beforeEach(() => jest.resetAllMocks())
 
    
