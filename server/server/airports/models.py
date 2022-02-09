@@ -3,13 +3,13 @@ import csv
 import os
 # from adaptor.model import CsvModel
 # from adaptor.fields import CharField
-
+file = 'airport-codes.csv'
 # Create your models here.
 def Airports():
 
     # path = os.listdir('frontend/server/server/airports')
 
-    with open('airport-codes.csv', 'r', newline='', encoding = 'cp850') as csvfile:
+    with open(file, 'r', newline='', encoding = 'cp850') as csvfile:
         field_names=['airport_name', 'city', 'code']
         reader = csv.DictReader(csvfile)
         airport_array = []

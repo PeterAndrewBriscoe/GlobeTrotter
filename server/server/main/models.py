@@ -7,11 +7,11 @@ class Trip(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     startdate = models.PositiveBigIntegerField()
     enddate = models.PositiveBigIntegerField()
-    # date
-    # flight
-    # hotels
-    # attractions
-    # activities
+    origin = models.CharField(max_length=100)
+    adults = models.PositiveIntegerField()
+    children = models.PositiveIntegerField()
+
+
 
     def __str__(self):
         return f'{self.id, self.location}'

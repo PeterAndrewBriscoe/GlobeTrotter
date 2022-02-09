@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-akd10^&#76_b-15fb6v+cc5a_sg4u00()u_@q1#e5%_hry12(n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS= ['globe--trotter.herokuapp.com']
 
 CORS_ALLOWED_ORIGINS = [
     "https://domain.com",
@@ -88,12 +89,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # default is sqlite3
-        'NAME': 'main', # default is BASE_DIR / 'db.sqlite3'
-        'USER': 'postgres', # update accordingly if appropriate
-        'PORT': 5432, # 5432 is postgres default
-        'HOST': 'localhost', # update accordingly if not running db locally
-        'PASSWORD': 'conway', # update accordingly if password protected
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dlmdkpovnt9oi',
+        'USER': 'olhokgparennnx',
+        'PASSWORD': '4d11f404c3ef03d33580204b2335ee30fee35c18f0f0d63f1ad1d4037d60d5c6',
+        'HOST': 'ec2-52-215-225-178.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
