@@ -85,13 +85,6 @@ const Search = ({}) => {
 			<Options getResults={getResults}/>
 			{results? <Weather locations={results} handleClick={handleClick}/> : <h3>No Results to Show</h3>}
 		</div>
-
-		{/* {results && results.temp ? <Weather locations={results} temp={results.temp} month={month} /> : <h3> Nothing to see here </h3>}
-
-		{results && !results.temp ? results.map(x => <div className="result-item" key={x.id}>
-                {x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}
-                </div>) : <h3> Nothing to see here </h3>}  */}
-		{/* {results ? <div className="result-grid"> {results.map(x=><div className="result-item" key={x.id}>{x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}</div>)} </div> : <h3> Nothing to see here </h3>} */}
 		</>
 	)
 }

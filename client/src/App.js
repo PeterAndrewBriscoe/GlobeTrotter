@@ -10,7 +10,7 @@ function App() {
       email: localStorage.getItem('globeTrotterEmail')
    })
    
-   const [placeData, setPlaceData] = useState(test_data)
+   const [placeData, setPlaceData] = useState()
 
    return (
       <div>

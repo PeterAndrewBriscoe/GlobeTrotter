@@ -5,10 +5,12 @@ const FlightForm = () => {
     
     const [origins, setOrigins] = useState([])
     const [destinations, setDestinations] = useState([])
+
     const [adults, setAdults] = useState()
     const [children, setChildren] = useState()
     const [outDate, setOutDate] = useState()
     const [returnDate, setReturnDate] = useState()
+    
     const [destinationCode, setDestinationCode]= useState()
     const [originCode, setOriginCode]= useState()
 
