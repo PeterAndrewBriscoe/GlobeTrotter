@@ -1,15 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import ResultItem from './ResultItem';
 
-const Weather = ({locations, temp, month}) => {
+const Weather = ({locations, handleSelect}) => {
     const apiToken = "9ae001f74dac4f0ebfc105001220702"
     // const validLocations = []
-
+    // console.log(locations)
     const [ loading, setLoading ] = useState(locations.length)
     const [ validLocations, setValidLocations ] = useState([])
 
-    useEffect(() => {
+    const [temperature, setTemperature] = useState(false)
+    const [temperatureValue, setTemperatureValue] = useState(10)
+    const [month, setMonth] = useState(0)
+
+    const getTemperatures = (e) => {
+        e.preventDefault()
         setValidLocations([])
+        // console.log(e)
         setLoading(locations.length)
         locations.forEach(async(location) => {
             await axios.get(`http://api.worldweatheronline.com/premium/v1/past-weather.ashx?key=${apiToken}&q=${location.name}&format=json&date=2021-${month}-01&enddate=2021-${month}-28`).then(response => {
@@ -17,10 +24,11 @@ const Weather = ({locations, temp, month}) => {
                 let monthWeatherArray = response.data.data.weather
                 let avgTempC = 0
                 monthWeatherArray.forEach( day => {
-                    avgTempC = avgTempC + day.avgtempC
+                    avgTempC = avgTempC + parseFloat(day.avgtempC)
                 })
                 avgTempC = avgTempC/28
-                if (avgTempC >= temp) {
+                // console.log(avgTempC)
+                if (avgTempC >= temperatureValue) {
                     setValidLocations(oldLocations => [...oldLocations, location])
                 } else {
                     // pass
@@ -28,8 +36,8 @@ const Weather = ({locations, temp, month}) => {
                 setLoading(state => state - 1)
             })
         })
-        console.log(validLocations)
-    }, [])
+        // console.log(validLocations)
+    }
     
     // async function fetchWeather(x) {
     //     console.log(`${counter} iteration`)
@@ -63,14 +71,58 @@ const Weather = ({locations, temp, month}) => {
     //     }
     // }, [])
 
+    function handleSlide(e){
+        setTemperatureValue(e.target.value);
+    }
+
+    function handleCheck(){
+        setTemperature(!temperature)
+    }
+
+    function handleMonth(e){
+        setMonth(e.target.value)
+    }
+
+    function handleClick(x){
+
+    }
+
     return (
-        <div> 
-            {console.log(loading)}
-            {console.log(loading == 0)}
-            {(loading <= 0) ? validLocations.map(x => <div className="result-item" key={x.id}>
-                {x.name} - {(Math.round(x.averageMetricScore * 100) / 100).toFixed(2)}
-                </div>) : <></>} 
+        <>
+        <div className="flex-container">
+        <form id="weather-form" onSubmit={getTemperatures}>
+            <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/>Temperature
+            <i className="fas fa-sun"></i>
+            {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
+            {temperature?   <select name="month" onChange={handleMonth}>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            : <></>}
+            {temperature? <input type="submit"></input> : <></>}
+        </form>
         </div>
+        <div> 
+            {/* {console.log(loading)}
+            {console.log(loading == 0)} */}
+            {validLocations.length>0 ? <div className="flex-container"> <div className="result-grid"> 
+                                        {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div> </div>: <></>} 
+
+            {locations && (validLocations.length===0 && !temperature) ? <div className="flex-container"> <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> </div>: <></>}
+            
+            {locations && validLocations.length===0 && temperature ? <h3> No Destinations for chosen temperature </h3> : <></>}
+        </div>
+        </>
         )
 }
 

@@ -5,8 +5,12 @@ import Navbar from './components/Navbar'
 import test_data from './utils/test_data.json'
 
 function App() {
-   const [userData, setUserData] = useState(localStorage.getItem('globeTrotterUsername'))
-   const [placeData, setPlaceData] = useState(test_data)
+   const [userData, setUserData] = useState({
+      username: localStorage.getItem('globeTrotterUsername'),
+      email: localStorage.getItem('globeTrotterEmail')
+   })
+   
+   const [placeData, setPlaceData] = useState()
 
    return (
       <div>

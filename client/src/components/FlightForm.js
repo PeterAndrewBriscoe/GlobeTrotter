@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const FlightForm = () => {
     
     const [origins, setOrigins] = useState([])
     const [destinations, setDestinations] = useState([])
+
     const [adults, setAdults] = useState()
     const [children, setChildren] = useState()
     const [outDate, setOutDate] = useState()
     const [returnDate, setReturnDate] = useState()
+    
     const [destinationCode, setDestinationCode]= useState()
     const [originCode, setOriginCode]= useState()
 
@@ -122,7 +124,7 @@ const FlightForm = () => {
                                         </form>
         : <></>}
         {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
-        {url && (destinations.length != 0 && origins.length != 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
+        {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
         </div>
     )
 }
