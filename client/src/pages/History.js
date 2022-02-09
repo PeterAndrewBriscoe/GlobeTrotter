@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Context from '../utils/Context'
 import { GlobeTrotter } from '../utils/axios_helper'
 import ListItem from '../components/ListItem'
-import test_data from '../utils/test_data.json'
+import test_data from '../utils/test_data2.json'
 
 function History() {
 	const navigate = useNavigate()
@@ -13,8 +13,13 @@ function History() {
 	useEffect(() => {
 		async function getData() {
 			const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
-			const data = await trotter.getSaved(userData)
-			return setList([test_data])
+			const data = await trotter.getSaved()
+			
+			for(const e of data) {
+				e.recordId = e.id
+				delete e.id
+			}
+			setList(data)
 		}
 		if(userData)
 			getData()
