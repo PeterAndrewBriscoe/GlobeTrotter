@@ -61,7 +61,7 @@ function FlightForm(props) {
 				<h4>{output}</h4>
       	    </form>
 			{ origins.length > 0 && destinations.length > 0 &&
-			<div>
+			<div className="flex-container">
 				<select onChange={e => handleChangeDeparture(e)}>
 					<option value="">Select Departure Airport</option>
 					{origins.map(e => <option value={e.code} key={`dep${e.code}`}>{e.name}</option>)}
@@ -72,7 +72,7 @@ function FlightForm(props) {
 				</select>
 			</div>
 			}
-			{flightUrl && <a href={flightUrl} target="_blank" rel="noopener noreferrer">Click Here For Flights!</a>}
+			{flightUrl && <a href={flightUrl} id="flight-link" target="_blank" rel="noopener noreferrer">Click Here For Flights!</a>}
 		</div>
 	)
 }

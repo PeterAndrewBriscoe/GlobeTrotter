@@ -34,7 +34,12 @@ function History() {
 	return (
 		<div className='history'>
 			<h2>History</h2>
-			<h3>{output}</h3>
+			{output==="loading..."? 	<div className="flex-container">
+												<div className="loading-div">
+													<h3 className="loading-message">Loading...</h3>
+													<div className="loader"></div>
+											</div>
+										</div>:<></>}
 			<div className='saved'>
 			{ list &&
          	<div className="history-grid">

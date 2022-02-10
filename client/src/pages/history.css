@@ -50,3 +50,6 @@
     }
   }
 
+  .history>.flex-container>.loading-div{
+    width:120%
+  }

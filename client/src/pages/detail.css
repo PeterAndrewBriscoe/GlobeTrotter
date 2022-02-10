@@ -96,7 +96,7 @@ body {
 }
 
 .flight-form-div>form>input{
-    width: 400% !important;
+    width: 300px !important;
     margin-top: 20px
 }
 
@@ -105,6 +105,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     background-color: #0c6431;
     border: 1px solid #0c6431;
     border-radius: 10px;
@@ -113,6 +114,11 @@ body {
 
 .flex-container>a{
     color:white
+}
+
+.datepicker{
+    color: white;
+    width: 300px;
 }
 
 /* #save{
@@ -169,4 +175,22 @@ text-align: center;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 10px;
+}
+
+#flight-link{
+    color:white;
+    font-size: 120%;
+}
+
+@media screen and (max-width: 895px) {
+    .details-grid{
+        grid-template-columns: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .datepicker{
+    width: 200px;    
+    font-size: 10pt;
+    }
 }

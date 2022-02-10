@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.8e5b23a7.css",
-    "main.js": "/static/js/main.9ea7b5bc.js",
+    "main.css": "/static/css/main.7a161b16.css",
+    "main.js": "/static/js/main.d0d55119.js",
     "static/media/globetrotter.png": "/static/media/globetrotter.bcfb85d91de5a3bb15f5.png",
     "index.html": "/index.html",
-    "main.8e5b23a7.css.map": "/static/css/main.8e5b23a7.css.map",
-    "main.9ea7b5bc.js.map": "/static/js/main.9ea7b5bc.js.map"
+    "main.7a161b16.css.map": "/static/css/main.7a161b16.css.map",
+    "main.d0d55119.js.map": "/static/js/main.d0d55119.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e5b23a7.css",
-    "static/js/main.9ea7b5bc.js"
+    "static/css/main.7a161b16.css",
+    "static/js/main.d0d55119.js"
   ]
 }

@@ -143,8 +143,8 @@ function Detail() {
 
 				<div id="flight-date-box">
 					<div id="date-picker">
-						<h3>Find flights for you, my dude</h3>
-						<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={false}/>
+						<h3>Find flights to {placeData.name}</h3>
+						<DateRangePicker className="datepicker" onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={false}/>
 					</div>
 					<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates} />
 				</div> 
