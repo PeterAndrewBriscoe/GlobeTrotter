@@ -1,10 +1,8 @@
 import axios from 'axios'
 
-//export const axios_helper = axios.create({ baseURL: "https://catfact.ninja" })
-
 
 export function GlobeTrotter(token) {
-	const axios_helper = axios.create({baseURL: "http://127.0.0.1:8000/"})
+	const axios_helper = axios.create({baseURL: "https://globe--trotter.herokuapp.com/"})
 	axios_helper.defaults.headers.common['Authorization'] = token && `Token ${token}`
 
 	async function loginRegUser(userData, mode) {
@@ -31,20 +29,30 @@ export function GlobeTrotter(token) {
 		}
 	}
 
-	async function getSaved(username) {
+	async function getHistory() {
 		try {
-			return { username, places: [{name: 'london', long: 32, lat: 34 }, {name: 'rome', long: 32, lat: 34 }, {name: 'berlin', long: 32, lat: 34 }] }
+			const res = await axios_helper.get('api/')
+			return res.data
 		} catch(e) {
 		}
 	}
 
-	async function save(data, mode) {
+	async function save(data) {
 		try {
-			//const res = await axios_helper.post('/api', userData)
-			return ({saveData: data, mode})
+			const res = await axios_helper.post('api/', data)
+			return (res.data)
 		} catch(e) {
+			throw new Error('Sorry there was an issue while saving')
+		}
+	}
+
+	async function deleteRecord(recordId) {
+		try {
+			const res = await axios_helper.delete('api/', { data: { id: recordId } })
+		} catch(e) {
+			throw new Error('Sorry there was an issue, could not delete')
 		}
 	}
 	
-	return { loginRegUser, logout, getSaved, save }
+	return { loginRegUser, logout, getHistory, save, deleteRecord }
 }

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.52% </span>
+                <span class="strong">8.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/21</span>
+                <span class='fraction'>2/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.52% </span>
+                <span class="strong">8.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/21</span>
+                <span class='fraction'>2/23</span>
             </div>
         
             
@@ -123,7 +123,13 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,6 +149,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,6 +171,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,14 +206,17 @@ function Login() {
 	const { setUserData } = useContext(Context)
 	const [mode, setMode] = <span class="cstat-no" title="statement not covered" >useState('Login')</span>
 	const [output, setOutput] = <span class="cstat-no" title="statement not covered" >useState('')</span>
-	const [formData, setFormData] = <span class="cstat-no" title="statement not covered" >useState({ email: '', password: '', confPassword: ''})</span>
+	const [formData, setFormData] = <span class="cstat-no" title="statement not covered" >useState({ username: '', email: '', password: '', confPassword: ''})</span>
 	  
 	async function <span class="fstat-no" title="function not covered" >authUser(</span>) {
 <span class="cstat-no" title="statement not covered" >		try {</span>
 			const trotter = <span class="cstat-no" title="statement not covered" >GlobeTrotter()</span>
 			const res = <span class="cstat-no" title="statement not covered" >await trotter.loginRegUser(formData, mode)</span>
-<span class="cstat-no" title="statement not covered" >			localStorage.setItem('userData', res)</span>
-<span class="cstat-no" title="statement not covered" >			setUserData(res)</span>
+<span class="cstat-no" title="statement not covered" >			if(res.token) {</span>
+<span class="cstat-no" title="statement not covered" >				localStorage.setItem('globeTrotterToken', res.token)</span>
+<span class="cstat-no" title="statement not covered" >				localStorage.setItem('globeTrotterUsername', formData.username)</span>
+<span class="cstat-no" title="statement not covered" >				setUserData(formData.username)</span>
+			}
 <span class="cstat-no" title="statement not covered" >			navigate('/')</span>
 		} catch(e) {
 <span class="cstat-no" title="statement not covered" >			setOutput(e.message)</span>
@@ -228,7 +243,10 @@ function Login() {
 				&lt;Tab modeState={{mode, setMode}} title='Login' /&gt;
 				&lt;Tab modeState={{mode, setMode}} title='Register' /&gt;
 				&lt;div className='w3-container'&gt;&lt;/div&gt;
-				&lt;input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='username' required /&gt;
+				&lt;input className="w3-input w3-margin-top" type="text" name="username" value={formData.username} onChange={handleInput} placeholder='username' required /&gt;
+				{ mode === 'Register' &amp;&amp;
+					&lt;input className="w3-input w3-margin-top" type="email" name="email" value={formData.email} onChange={handleInput} placeholder='email' required /&gt;
+				}
 				&lt;input className="w3-input w3-margin-top" type="password" name="password" value={formData.password} onChange={handleInput} placeholder='password' required /&gt;
 				{ mode === 'Register' &amp;&amp;
 					&lt;input className="w3-input w3-margin-top" type="password" name="confPassword" value={formData.confPassword} onChange={handleInput} placeholder='confirm password' required /&gt;
@@ -250,7 +268,7 @@ export default Login</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Feb 07 2022 16:11:30 GMT+0000 (Greenwich Mean Time)
+                at Tue Feb 08 2022 17:50:42 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
