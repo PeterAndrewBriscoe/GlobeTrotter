@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-//export const axios_helper = axios.create({ baseURL: "https://catfact.ninja" })
-
 
 export function GlobeTrotter(token) {
 	const axios_helper = axios.create({baseURL: "https://globe--trotter.herokuapp.com/"})
@@ -31,7 +29,7 @@ export function GlobeTrotter(token) {
 		}
 	}
 
-	async function getSaved() {
+	async function getHistory() {
 		try {
 			const res = await axios_helper.get('api/')
 			return res.data
@@ -44,36 +42,17 @@ export function GlobeTrotter(token) {
 			const res = await axios_helper.post('api/', data)
 			return (res.data)
 		} catch(e) {
+			throw new Error('Sorry there was an issue while saving')
 		}
 	}
 
 	async function deleteRecord(recordId) {
 		try {
-			console.log(recordId)
-			const res = await axios_helper.delete('api/', { id: recordId })
-			return (res)
+			const res = await axios_helper.delete('api/', { data: { id: recordId } })
 		} catch(e) {
+			throw new Error('Sorry there was an issue, could not delete')
 		}
 	}
 	
-	return { loginRegUser, logout, getSaved, save, deleteRecord }
-}
-
-export function Triposo() {
-	const apiToken = "3f71d5kylylwplhj7wu5ikwa4yds3dlj"
-	const accountId = "IG3CBP2Q"
-	//const axios_helper = //axios.create({baseURL: "https://triposo.com/api/20220104/"})//${lopj}"})
-
-	async function getLocation(location) {
-		try {
-			console.log('fetch')
-			const res = await axios.get(`https://www.triposo.com/api/20220104/location.json?id=${location}&account=IG3CBP2Q&token=3f71d5kylylwplhj7wu5ikwa4yds3dlj`)//await axios_helper.get(`location.json?id=${location}&account=${accountId}&token=${apiToken}`)
-			console.log('data:' + res.data)
-			return res.data
-		} catch(e) {
-			console.log(e.message)
-		}
-	}
-
-	return getLocation
+	return { loginRegUser, logout, getHistory, save, deleteRecord }
 }

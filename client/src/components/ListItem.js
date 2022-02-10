@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Context from '../utils/Context'
-import { Triposo } from '../utils/axios_helper'
 import axios from 'axios'
 
 function ListItem(props) {
@@ -9,9 +8,8 @@ function ListItem(props) {
 	const navigate = useNavigate()
 
 	async function getPlaceData() {
-		//const triposo = Triposo()
 		try {
-			console.log(props.data.location)
+			console.log('fetch')
 			const data = await axios.get(`https://www.triposo.com/api/20220104/location.json?id=${props.data.location}&account=IG3CBP2Q&token=3f71d5kylylwplhj7wu5ikwa4yds3dlj`)
 			const flightForm = {
 				origin: props.data.origin,
