@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# GlobeTrotter
+- Contributors: Angela Dyrmishi, James Quin, Peter Andrews-Briscoe, Rahib Rahman, Rajesh Sharma
+### Description
+GlobeTrotter is a Trip Adviser/Reccomendation web application designed to provide suggestions and information on various places based on prerequisite conditions - i.e. Categories such as Golf, Nightlife, Beach and users can also select based on average historical temperature for the location. The site can also provide a detailed view for each selected location wherein users can see hotels around the area that are available for booking and also get a link to flights available to airports in that location. Users are also able to Register and login in order to save Trips to various locations with details of their trips such as dates and flight information.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
+- Clone the repositiory into desired directory
+- Open a terminal inside the cloned repo and navigate into client folder
+- use command `npm install`
+- Navigate back to root directory and go into the server folder
+- Go into a virtual pipenv shell with `pipenv shell` and run `pipenv install`
 
-## Available Scripts
+## Usage
+- Inside the client folder run `npm start` to open the client in browser
+- Inside the server folder, while inside a virtual `pipenv shell`,  navigate to the server folder that contains the `manage.py` file, and run command `python manage.py runserver` to run the server locally
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Technologies
+- HTML/CSS/JavaScript
+- React Frontend
+- Python/ Django Server
+- PostgreSQL Database
+- Jest
+- Pytest
