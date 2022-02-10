@@ -20,3 +20,22 @@
  .menu-item:hover {
 	 background-color: wheat;
  }
+
+ /* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f109;
+}
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #0b5a2dde;
+    border-radius: 20px;
+    border: 6px solid transparent;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #0b5a2d;
+}

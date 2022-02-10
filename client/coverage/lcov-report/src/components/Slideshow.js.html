@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/History.js</title>
+    <title>Code coverage report for src/components/Slideshow.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/pages</a> History.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> Slideshow.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">36.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/12</span>
+                <span class='fraction'>4/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/12</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,96 +92,72 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Context from '../utils/Context'
-import { GlobeTrotter } from '../utils/axios_helper'
-import ListItem from '../components/ListItem'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react'
 &nbsp;
-function History() {
-	const navigate = useNavigate()
-	const userData = useContext(Context)
-	const [list, setList] = useState('')
+function Slideshow(props) {
+	const [index, setIndex] = useState(0)
+	const [images] = useState(props.images)
 &nbsp;
-	useEffect(() =&gt; {
-		async function <span class="fstat-no" title="function not covered" >getData(</span>) {
-			const trotter = <span class="cstat-no" title="statement not covered" >GlobeTrotter(localStorage.getItem('globeTrotterToken'))</span>
-			const data = <span class="cstat-no" title="statement not covered" >await trotter.getSaved(userData)</span>
-<span class="cstat-no" title="statement not covered" >			return setList(data.places)</span>
-		}
-		<span class="missing-if-branch" title="if path not taken" >I</span>if(userData)
-<span class="cstat-no" title="statement not covered" >			getData()</span>
+	const handleClick = <span class="fstat-no" title="function not covered" >e </span>=&gt; {
+		let num
+<span class="cstat-no" title="statement not covered" >		e.target.className.match('right') ? num = 1 : num = -1</span>
+<span class="cstat-no" title="statement not covered" >		if(index + num === images.length)</span>
+<span class="cstat-no" title="statement not covered" >			setIndex(0)</span>
+		else <span class="cstat-no" title="statement not covered" >if(index + num &lt; 0)</span>
+<span class="cstat-no" title="statement not covered" >			setIndex(images.length - 1)</span>
 		else
-			navigate('/')
-	}, [])
+<span class="cstat-no" title="statement not covered" >			setIndex(<span class="fstat-no" title="function not covered" >st</span>ate =&gt; <span class="cstat-no" title="statement not covered" >state + num)</span></span>
+	}
 &nbsp;
-	return (
+	return(
 		&lt;div&gt;
-			&lt;h2&gt;History&lt;/h2&gt;
-			&lt;div&gt;
-			{ list &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >         	&lt;div className="w3-container"&gt;</span>
-              	{list.map(<span class="fstat-no" title="function not covered" >(e</span>, i)=&gt; <span class="cstat-no" title="statement not covered" >&lt;ListItem key={`place${i}`} data={e} /&gt;)</span>}
-            &lt;/div&gt;
-         }
+			&lt;div className="center-cropped" style={{backgroundImage: `url(${images[index].sizes.medium.url})`}}&gt;&lt;/div&gt;
+			&lt;h4&gt;{images[index].caption}&lt;/h4&gt;
+			&lt;div className='w3-xxlarge'&gt;
+				&lt;i className="w3-button bi bi-caret-left-square" data-testid='button1' onClick={handleClick} role='clicker'&gt;&lt;/i&gt;
+				&lt;i className="w3-button bi bi-caret-right-square" onClick={handleClick}&gt;&lt;/i&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 	)
 }
 &nbsp;
-export default History</pre></td></tr></table></pre>
+export default Slideshow</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Feb 09 2022 18:00:36 GMT+0000 (Greenwich Mean Time)
+                at Wed Feb 09 2022 17:26:43 GMT+0000 (Greenwich Mean Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

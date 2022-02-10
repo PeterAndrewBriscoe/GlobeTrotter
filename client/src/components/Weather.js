@@ -13,6 +13,8 @@ const Weather = ({locations, handleSelect}) => {
     const [temperatureValue, setTemperatureValue] = useState(10)
     const [month, setMonth] = useState(0)
 
+    const [noDataMessage, setNoDataMessage] = useState(false)
+
     const getTemperatures = (e) => {
         e.preventDefault()
         setValidLocations([])
@@ -83,34 +85,37 @@ const Weather = ({locations, handleSelect}) => {
         setMonth(e.target.value)
     }
 
-    function handleClick(x){
-
-    }
-
     return (
         <>
         <div className="flex-container">
         <form id="weather-form" onSubmit={getTemperatures}>
-            <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/>Temperature
-            <i className="fas fa-sun"></i>
-            {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
-            {temperature?   <select name="month" onChange={handleMonth}>
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                                <option value="7">July</option>
-                                <option value="8">August</option>
-                                <option value="9">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
-                            </select>
-                            : <></>}
-            {temperature? <input type="submit"></input> : <></>}
-        </form>
+                    <div id="weather-form-topdiv">
+                        <div id="weather-form-div1">
+                            <input type="checkbox" onChange={handleCheck} value="3" name="temperature"/> Temperature
+                            <i className="fas fa-sun"></i>
+                            {temperature? <>{(Math.round(temperatureValue * 100) / 100).toFixed(1)} <input type="range" id="weather-slider" name="temperatureValue" min="10" max="30" value={temperatureValue} step="2" onChange={handleSlide}></input></> : <></>}
+                        </div>
+                        {temperature?   <select name="month" onChange={handleMonth}>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                        : <></>}
+                        {temperature? <input type="submit"></input> : <></>}
+                    </div>
+                <div>
+                    {locations && validLocations.length===0 && temperature ? <h4 id="temp-message"> No locations found for the selected temperature </h4> : <></>}
+                </div>
+        </form> 
         </div>
         <div> 
             {/* {console.log(loading)}
@@ -118,9 +123,10 @@ const Weather = ({locations, handleSelect}) => {
             {validLocations.length>0 ? <div className="flex-container"> <div className="result-grid"> 
                                         {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div> </div>: <></>} 
 
+
             {locations && (validLocations.length===0 && !temperature) ? <div className="flex-container"> <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> </div>: <></>}
             
-            {locations && validLocations.length===0 && temperature ? <h3> No Destinations for chosen temperature </h3> : <></>}
+            
         </div>
         </>
         )

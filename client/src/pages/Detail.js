@@ -7,6 +7,7 @@ import ReactWeather, { useOpenWeather } from 'react-open-weather'
 import Context from '../utils/Context'
 import ConfirmModal from '../components/ConfirmModal'
 import { GlobeTrotter } from '../utils/axios_helper'
+import './detail.css'
 
 import Slideshow from '../components/Slideshow'
 import FlightForm from '../components/FlightForm'
@@ -110,9 +111,9 @@ function Detail() {
 
 	return (
 		<> { placeData && 
-		<div>
-			<h3 className='w3-center'>{placeData.name}</h3>
-			<h4>{placeData.snippet}</h4>
+		<div id="detail-page">
+			<h3 className='w3-center' id="placenameH3">{placeData.name}</h3>
+			<h4>{placeData.snippet[0].toUpperCase()+placeData.snippet.substring(1)}</h4>
 			<Slideshow images={placeData.images}/>
 			<Attractions location={placeData.name}/>
 			{<div>

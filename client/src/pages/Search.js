@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, {useContext, useState} from 'react';
 import axios from 'axios'
 import Options from '../components/Options'
@@ -10,11 +11,15 @@ const Search = ({}) => {
 	// const temp = results.temp
 	// const month = 6
 	const [results, setResults] = useState()
+	const [formSubmitted , setFormSubmitted]=useState(false)
+	const [loading , setLoading]=useState(true)
+	console.log(formSubmitted)
 
 	const getAverage = (array) => array.reduce((a, b) => a + b) / array.length;
 	
 	async function getResults(e){
 		e.preventDefault()
+		setFormSubmitted(true)
 		const tagLabels = {"art": "subtype-Art_museums", "beaches": "beaches", "cuisine": "cuisine", "golf": "golf", "museums":"museums", "skiing": "poitype-Ski_area", "hiking": "hiking", "nightlife": "nightlife"}
 		const chosenTags = []
 		const chosenTagsUrl = []
@@ -58,8 +63,9 @@ const Search = ({}) => {
 		// if(temp){
 		// 	fetchedData.data.results.push({'minimumTemp': temp})
 		// }
-		setResults(fetchedData.data.results)
+		setResults(fetchedData.data.results.slice(0,10))
 		// console.log(fetchedData.data.results)
+		setLoading(false)
 	}
 
 	async function fetchResults(joinedTags,joinedScores,chosenTags){
@@ -78,13 +84,55 @@ const Search = ({}) => {
 		// setPlaceData(location)
 	}
 
+	function checkDataExists(){
+		if(formSubmitted && results){
+			if(loading){
+				return 	<div class="flex-container">
+							<div className="loading-div">
+								<h3 className="loading-message">Loading...</h3>
+									<div class="loader"></div>
+							</div>
+						</div>
+			}
+			else{
+				if(results.length>0){
+					return <Weather locations={results} handleClick={handleClick}/>
+				}
+				else{
+					return <h3>No locations found with those criteria</h3>
+				}
+			}
+		}
+		else if(formSubmitted && !results){
+			if(loading){
+				return 	<div class="flex-container">
+							<div className="loading-div">
+								<h3 className="loading-message">Loading...</h3>
+								<div class="loader"></div>
+							</div>
+						</div>
+			}
+			else{
+				return <h3>No locations found with those criteria</h3>
+			}
+		}
+		else if(!formSubmitted){
+			return <></>
+		}
+	}
+
 	return (
 		<>
 		<div>
-			<h3>Welcome</h3>
 			<Options getResults={getResults}/>
-			{results? <Weather locations={results} handleClick={handleClick}/> : <h3>No Results to Show</h3>}
+			{checkDataExists()}
 		</div>
+		{/* <div class="flex-container">
+							<div className="loading-div">
+								<h3 className="loading-message">Loading...</h3>
+								<div class="loader"></div>
+							</div>
+						</div> */}
 		</>
 	)
 }

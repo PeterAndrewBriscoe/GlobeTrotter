@@ -1,0 +1,43 @@
+nav{
+    margin-left: -40px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+#login-icon{
+    display: inline;
+    list-style: none;
+    margin-left: 20px;
+    font-size: 120%;
+    margin-top: 70px;
+}
+
+#login-icon:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #25582500 !important;
+}
+
+.user-menu{
+    display: flex;
+}
+
+.menu-item{
+    display: inline;
+    list-style: none;
+    margin-left: 20px;
+    font-size: 120%;
+}
+
+.menu-item:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #25582500 !important;
+}

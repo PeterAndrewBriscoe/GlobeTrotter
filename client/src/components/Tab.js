@@ -8,7 +8,7 @@ function Tab(props) {
 	}, [props.modeState.mode])
 
 	function getColours() {
-		return props.title === props.modeState.mode ? 'w3-border-blue' : 'w3-light-grey w3-hover-sand'
+		return props.title === props.modeState.mode ? 'w3-blue' : 'w3-light-grey w3-hover-sand'
 	}
 
 	const handleClick = () => {
@@ -16,7 +16,7 @@ function Tab(props) {
 	}
 
 	return (
-		<h3 onClick={handleClick}>
+		<h3 onClick={handleClick} role='clicker'>
       	<div className={`w3-half w3-bottombar w3-padding ${colours}`}>{props.title}</div>
     	</h3>
 	)
