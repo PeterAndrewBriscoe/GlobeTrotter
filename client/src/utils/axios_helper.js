@@ -34,6 +34,8 @@ export function GlobeTrotter(token) {
 			const res = await axios_helper.get('api/')
 			return res.data
 		} catch(e) {
+			console.log(e.response.data)
+			throw new Error(`Sorry there was an issue, please insure you're logged in`)
 		}
 	}
 

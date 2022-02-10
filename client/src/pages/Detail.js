@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
-//import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css'
+import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css'
 import { useNavigate } from 'react-router-dom'
 import Iframe from 'react-iframe'
 import ReactWeather, { useOpenWeather } from 'react-open-weather'
@@ -24,14 +24,14 @@ function Detail() {
 	
 	const navigate = useNavigate()
 	
-	/*
+	
 	const { data, isLoading, errorMessage } = useOpenWeather({
 		key: '05997b31df808c81ea6165ee022a8b1c',
 		lat: placeData && placeData.coordinates.latitude,
 		lon: placeData&& placeData.coordinates.longitude,
 		lang: 'en',
 		unit: 'metric', // values are (metric, standard, imperial)
-	})*/
+	})
 
 	function initialiseDates() {
 		if(placeData && placeData.flightForm) {
@@ -47,8 +47,8 @@ function Detail() {
 		else
 			return {
 				origin: '',
-				adults: 0,
-				children: 0
+				adults: '',
+				children: ''
 			}
 	}
 
@@ -115,7 +115,7 @@ function Detail() {
 			<h4>{placeData.snippet}</h4>
 			<Slideshow images={placeData.images}/>
 			<Attractions location={placeData.name}/>
-			{/* <div>
+			{<div>
 				<ReactWeather
       			isLoading={isLoading}
       			errorMessage={errorMessage}
@@ -124,7 +124,7 @@ function Detail() {
       			locationLabel={placeData.name}
       			unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
     			/>
-			</div> */}
+			</div>}
 			<div>
 				<Iframe url={`https://www.bing.com/maps/embed?h=400&w=400&cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&lvl=10&typ=d&sty=r&src=SHELL&FORM=MBEDV8`} scrolling="no"
         			width="400px"
@@ -139,7 +139,7 @@ function Detail() {
 			{<div>
 				<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
 			</div> }
-			<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates}/>
+			<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates} />
 			{ userData &&
 			<div>
 				<button onClick={handleSave}>Save</button>
@@ -152,7 +152,5 @@ function Detail() {
 		}</>
 	)
 }
-//<Calendar onChange={onChange} value={value} minDate={tomorrow()} maxDate={nextYear()} selectRange={true} />
-//|| placeDataEdit !== placeData}
 
 export default Detail
