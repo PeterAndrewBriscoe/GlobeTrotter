@@ -16,8 +16,12 @@ function ConfirmModal(props) {
 			<div style={{display: props.show.showModal}}>
 				<div>
 					<h2>Are you sure?</h2>
-					<button onClick={confirmDelete}>Yes</button>
-					<button onClick={closeModal}>No</button>
+					<div className="flex-container"> 
+					<div className="btn-flexbox">
+						<button id="delete" onClick={confirmDelete}>Yes</button>
+						<button className="modalbtn" onClick={closeModal}>No</button>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>

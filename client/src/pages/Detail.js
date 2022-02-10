@@ -117,6 +117,7 @@ function Detail() {
 			<Slideshow images={placeData.images}/>
 			<div className="details-grid">
 				<Attractions location={placeData.name}/>
+
 				{<div id='weather'>
 					<ReactWeather
 					isLoading={isLoading}
@@ -127,6 +128,7 @@ function Detail() {
 					unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
 					/>
 				</div>}
+
 				<div className="flex-container">
 					<Iframe url={`https://www.bing.com/maps/embed?h=400&w=400&cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&lvl=10&typ=d&sty=r&src=SHELL&FORM=MBEDV8`} scrolling="no"
 						width="400px"
@@ -138,20 +140,25 @@ function Detail() {
 					/>
 					<a href={`https://www.bing.com/maps?cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&amp;sty=r&amp;lvl=10&amp;FORM=MBEDLD`} target="_blank" rel="noopener noreferrer">View Larger Map</a>
 				</div>
+
 				<div id="flight-date-box">
 					<div id="date-picker">
-						<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
+						<h3>Find flights for you, my dude</h3>
+						<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={false}/>
 					</div>
 					<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates} />
 				</div> 
 			</div>
+
 			{ userData &&
-			<div>
-				<button id="save" onClick={handleSave}>Save</button>
-				{placeData.recordId && <button onClick={showDeleteModal}>Delete</button>}
+			<div className="flex-container">
+				<div className="btn-flexbox">
+					<button className="modalbtn" onClick={handleSave}>Save</button>
+					{placeData.recordId && <button id="delete" onClick={showDeleteModal}>Delete</button>}
+				</div>
 			</div>
 			}
-			<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
+				<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
 			{ output && <h2>{output}</h2>}
 		</div>
 		}
