@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import HotelFinder from './HotelFinder';
 
 const FlightForm = (props) => {
     const [origins, setOrigins] = useState([])
@@ -25,6 +26,7 @@ const FlightForm = (props) => {
         
         const body = {'destination': props.destination, 'origin': e.target[0].value }
         const results = await axios.post("https://globe--trotter.herokuapp.com/airports/", body)
+
         const potential_destinations = []
         const potential_origins = []
 
@@ -101,6 +103,7 @@ const FlightForm = (props) => {
         }
 
     return(
+        <>
         <div className="flex-container">
         <form id="flight-form" onSubmit={getAirports}>
             <>
@@ -133,6 +136,8 @@ const FlightForm = (props) => {
         {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
         {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url} target="_blank" rel="noopener noreferrer">Click Here For Flights!</a> : <> </>}
         </div>
+        {/* <HotelFinder props....../> */}
+        </>
     )
 }
 

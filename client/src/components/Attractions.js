@@ -10,13 +10,15 @@ function Attractions({location}){
 
     useEffect(()=>{
         axios.get(`https://www.triposo.com/api/20220104/poi.json?tag_labels=topattractions&location_id=${location}&account=${accountId}&token=${apiToken}`)
-        .then(results=>setAttractionArray(results))
+        .then(results=>setAttractionArray(results.data.results))
     }, [])
+
+    console.log(attractionArray)
 
     return(
         <div id="attractions">
             <h3>Attractions:</h3>
-            {attractionArray.length > 0 ? attractionArray.data.results.map(x => <a href={`https://www.google.com/search?q=${x.name}+${location}`} target="_blank"><li key={x.id}>{x.name}</li></a>) : <h4>No attractions for this location</h4>}
+            {attractionArray.length > 0 ? attractionArray.map(x => <a href={`https://www.google.com/search?q=${x.name}+${location}`} target="_blank" key={`link${x.name}`}><li key={x.id}>{x.name}</li></a>) : <h4>No attractions for this location</h4>}
         </div>
     )
 }
