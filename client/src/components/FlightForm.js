@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import HotelFinder from './HotelFinder';
 
 const FlightForm = (destinationName) => {
     
@@ -86,6 +87,7 @@ const FlightForm = (destinationName) => {
         }
 
     return(
+        <>
         <div className="flex-container">
         <form id="flight-form" onSubmit={getAirports}>
             <>
@@ -126,6 +128,8 @@ const FlightForm = (destinationName) => {
         {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
         {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url}>Click Here For Flights!</a> : <> </>}
         </div>
+        {/* <HotelFinder props....../> */}
+        </>
     )
 }
 

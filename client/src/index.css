@@ -124,7 +124,8 @@ h1, h3{
 
 #option-form{
   /* border: 1px rgb(97, 145, 97) solid; */
-  background-color: #087436;
+  /* background-color: #087436; */
+  background-color: #134213fa;
   box-shadow: 2px 2px 2px #808080;
   border-radius: 10px;
   margin: 0% 5% 0% 5%;
@@ -166,7 +167,7 @@ h1, h3{
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.103);
+  background-color: rgba(255, 255, 255, 0.068);
 }
 
 .option-box>div>input[type=checkbox]{
@@ -261,7 +262,8 @@ i{
   color: white !important;
   font-size: 18pt;
   font-weight: normal !important;
-  background-color: #087436;
+  /* background-color: #087436; */
+  background-color: #077781;
   box-shadow: 2px 2px 2px #808080;
   border-radius: 10px;
   padding: 5px;
