@@ -23,17 +23,18 @@ function Detail() {
 	const [dates, changeDates] = useState(initialiseDates())
 	
 	const navigate = useNavigate()
+	
 	/*
 	const { data, isLoading, errorMessage } = useOpenWeather({
 		key: '05997b31df808c81ea6165ee022a8b1c',
-		lat: placeData && placeData.coordinates.latitude || 51.509865,	//'48.137154',
-		lon: placeData&& placeData.coordinates.longitude || -0.118092,	//'11.576124',
+		lat: placeData && placeData.coordinates.latitude,
+		lon: placeData&& placeData.coordinates.longitude,
 		lang: 'en',
 		unit: 'metric', // values are (metric, standard, imperial)
 	})*/
 
 	function initialiseDates() {
-		if(placeData.flightForm) {
+		if(placeData && placeData.flightForm) {
 			const startdate = new Date(placeData.flightForm.startdate)
 			const enddate = new Date(placeData.flightForm.enddate)
 			return [startdate, enddate]
@@ -71,20 +72,20 @@ function Detail() {
 
 	async function deleteRecord() {
 		try {
-			const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
+			setOutput('deleting...')
 			const res = await trotter.deleteRecord(placeData.recordId)
-			console.log(res)
+			navigate(-1)
 		} catch(e) {
-
+			setOutput('Sorry there was an issue, could not delete')
 		}
 	}
 
 	async function save() {
 		try {
 			setOutput('saving...')
-			const trotter = GlobeTrotter(localStorage.getItem('globeTrotterToken'))
 		
 			const res = await trotter.save({
+				id: placeData.recordId,
 				location: placeData.id,
 				startdate: dates ? dates[0].getTime() : 0,
 				enddate: dates ? dates[1].getTime() : 0,
@@ -114,7 +115,7 @@ function Detail() {
 			<h4>{placeData.snippet}</h4>
 			<Slideshow images={placeData.images}/>
 			<Attractions location={placeData.name}/>
-			{/*<div>
+			{/* <div>
 				<ReactWeather
       			isLoading={isLoading}
       			errorMessage={errorMessage}
@@ -123,7 +124,7 @@ function Detail() {
       			locationLabel={placeData.name}
       			unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
     			/>
-			</div>*/}
+			</div> */}
 			<div>
 				<Iframe url={`https://www.bing.com/maps/embed?h=400&w=400&cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&lvl=10&typ=d&sty=r&src=SHELL&FORM=MBEDV8`} scrolling="no"
         			width="400px"
@@ -146,11 +147,6 @@ function Detail() {
 			</div>
 			}
 			<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
-			{ confirmedModal &&
-			<div>
-				<h2>deleting...</h2>
-			</div>
-			}
 			{ output && <h2>{output}</h2>}
 		</div>
 		}</>
