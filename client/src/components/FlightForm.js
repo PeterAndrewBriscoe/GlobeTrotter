@@ -1,161 +1,80 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import HotelFinder from './HotelFinder';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const FlightForm = (props) => {
-    const [origins, setOrigins] = useState([])
-    const [destinations, setDestinations] = useState([])
+function FlightForm(props) {
 
-    const [adults, setAdults] = useState()
-    const [children, setChildren] = useState()
-    //const [outDate, setOutDate] = useState()
-    //const [returnDate, setReturnDate] = useState()
-    
-    const [destinationCode, setDestinationCode]= useState()
-    const [originCode, setOriginCode]= useState()//props.flighForm.origin)
+	const [destinations, setDestinations] = useState([])
+	const [origins, setOrigins] = useState([])
+	const [depAirport, setDepAirport] = useState('')
+	const [desAirport, setDesAirport] = useState('')
+	const [output, setOutput] = useState('')
+	const [flightUrl, setFlightUrl] = useState('')
 
-    const [url, setUrl]=useState()
-    const [searches, setSearches]=useState(0)
+	useEffect(() => {
+		if(depAirport && desAirport) {
+			let parsedOutDate = props.dates[0].toISOString()
+      	parsedOutDate = parsedOutDate.substring(2, 10).replace(/-/g, '')
+      	let parsedRtnDate = props.dates[1].toISOString()
+      	parsedRtnDate = parsedRtnDate.substring(2, 10).replace(/-/g, '')
+			setFlightUrl(`https://www.skyscanner.net/transport/flights/${depAirport}/${desAirport}/${parsedOutDate}/${parsedRtnDate}?adults=${props.flightForm.flightForm.adults}&adultsv2=1&cabinclass=economy&children=${props.flightForm.flightForm.children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`)
+		}
+		else
+			setFlightUrl('')
+	}, [depAirport, desAirport])
+	
+	async function getAirports() {
+		try {
+			const res = await axios.post("https://globe--trotter.herokuapp.com/airports/", { origin: props.flightForm.flightForm.origin, destination: props.destination })
+			setOrigins(res.data.origin)
+			setDestinations(res.data.destination)
 
-    async function getAirports(e){
-        setSearches(searches+1)
-        setOriginCode(null)
-        setDestinationCode(null)
-        setUrl(null)
-        e.preventDefault()
-        
-        const body = {'destination': props.destination, 'origin': e.target[0].value }
-        const results = await axios.post("https://globe--trotter.herokuapp.com/airports/", body)
+		} catch(e) {
+			setOutput(e.message)
+		}
+	}
 
-        const potential_destinations = []
-        const potential_origins = []
+	const handleChangeDeparture = e => {
+		setDepAirport(e.target.value)
+	}
 
-        for(let x in results.data.origin){
-            potential_origins.push(results.data.origin[x])
-        }
-        setOrigins(potential_origins)
+	const handleChangeDestination = e => {
+		setDesAirport(e.target.value)
+	}
 
-        for(let x in results.data.destination){
-            potential_destinations.push(results.data.destination[x])
-        }
-        setDestinations(potential_destinations)
+	const handleFormSubmit = e => {
+		e.preventDefault()
+		getAirports()
+	}
 
-        if(potential_origins.length > 1){
-            setOriginCode(potential_origins[0].code)
-        } else if (potential_origins.length === 0){
-            setOriginCode(null)
-        }
+	const handleInput = e => {
+		const { name, value } = e.target
+		props.flightForm.setFlightForm({ ...props.flightForm.flightForm, [name]: value})
+	}
 
-        if(potential_destinations.length === 1){
-            setDestinationCode(potential_destinations[0].code)
-        } else if (potential_destinations.length === 0){
-            setDestinationCode(null)
-        }
-
-        let parsedOutDate = props.dates[0].toISOString()
-        parsedOutDate = parsedOutDate.substring(2, 10).replace(/-/g, '')
-        let parsedRtnDate = props.dates[1].toISOString()
-        parsedRtnDate = parsedRtnDate.substring(2, 10).replace(/-/g, '')
-
-        setAdults(e.target[1].value)
-        setChildren(e.target[2].value)
-        props.flightForm.setFlightForm({
-            origin: parseInt(e.target[0].value),
-			adults: parseInt(e.target[2].value),
-			children: children
-        })
-
-        //format date correctly ready for URL
-        /*let formattedOutDate = e.target[1].value.substring(2).replace(/-/g,'')
-        let formattedReturnDate = e.target[2].value.substring(2).replace(/-/g,'')
-        setOutDate(formattedOutDate)
-        setReturnDate(formattedReturnDate)*/
-        
-        
-        if(originCode && destinationCode){
-            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${parsedOutDate}/${parsedRtnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
-            setUrl(url)
-        }
-    }
-    
-
-    function generateLink(e){
-        // "https://www.skyscanner.net/transport/flights/lond/nyca/220209/220216/"
-        // "?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2="
-        // "&inboundaltsenabled=false&infants=0&outboundaltsenabled=false"
-        // "&preferdirects=false&ref=home&rtn=1"
-        e.preventDefault()
-        if(e.target.name === "origin-list"){
-            setOriginCode(e.target.value)
-        }
-        else if(e.target.name === "destination-list"){
-            setDestinationCode(e.target.value)
-        }
-
-        if(originCode && destinationCode){
-            let parsedOutDate = props.dates[0].toISOString()
-            parsedOutDate = parsedOutDate.substring(2, 10).replace(/-/g, '')
-            let parsedRtnDate = props.dates[1].toISOString()
-            parsedRtnDate = parsedRtnDate.substring(2, 10).replace(/-/g, '')
-            const url = `https://www.skyscanner.net/transport/flights/${originCode}/${destinationCode}/${parsedOutDate}/${parsedRtnDate}?adults=${adults}&adultsv2=1&cabinclass=economy&children=${children}&childrenv2=&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=1`
-            setUrl(url)
-        }
-        }
-
-    return(
-        <>
-        <div className="flex-container">
-        <form id="flight-form" onSubmit={getAirports} role='flight-form'>
-            <>
-                <label>Flight from:</label>
-                <input required name="from" type="text" data-testid='form'/>
-            </>
-            <>
-
-                <label>Outbound Date:</label>
-                <input required name="outboundDate" type="date" data-testid='outboundDate'/>
-            </>
-            <>
-                <label>Return Date:</label>
-                <input required name="returnDate" type="date" data-testid='returnDate' />
-            </>
-            <>
-                <label>Number of Adults:</label>
-                <input required name="adults" type="number" min="0" max="8" data-testid="adults"/>
-
-            </>
-            <>
-                <label>Number of Children:</label>
-                <input name="children" type="number" min="0" max="8" />
-            </>
-
-            <input type="submit" disabled={!props.dates}/>
-
-        </form>
-        {origins.length > 0 && destinations.length > 0 ? <form className="potential-airports" data-testid="potential-origins">
-                                            <select name="origin-list" onChange={generateLink}>
-                                                <option value="">Select Airport</option>
-                                                {origins.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
-                                            </select>
-                                </form>
-        : <></>}
-        {destinations.length > 0 && origins.length > 0 ? <form className="potential-airports" data-testid="potential-destinations">
-                                            <select name="destination-list" onChange={generateLink}>
-                                                {destinations.map( x => <option value={x.code} key={x.code}>{x.name}</option>)}
-                                            </select>
-                                        </form>
-        : <></>}
-        {searches > 0 && (destinations.length === 0 || origins.length === 0) ? <p>Currently no flights to one or more of these airports</p> : <> </>}
-        {url && (destinations.length !== 0 && origins.length !== 0) ? <a href={url} target="_blank" rel="noopener noreferrer">Click Here For Flights!</a> : <> </>}
-        </div>
-        {/* <HotelFinder props....../> */}
-        </>
-    )
+	return (
+		<div>
+			<form id="flight-form" onSubmit={handleFormSubmit}>
+         	<input required name="origin" type="text" placeholder='flying from' value={props.flightForm.flightForm.origin} onChange={handleInput} />
+         	<input required name="adults" type="number" min="0" max="8" placeholder='number of adults' value={props.flightForm.flightForm.adults} onChange={handleInput} />
+         	<input name="children" type="number" min="0" max="8" placeholder='number of children' value={props.flightForm.flightForm.children} onChange={handleInput} />
+      		<input type="submit" disabled={!props.dates}/>
+				<h4>{output}</h4>
+      	</form>
+			{ origins.length > 0 && destinations.length > 0 &&
+			<div>
+				<select onChange={e => handleChangeDeparture(e)}>
+					<option value="">Select Departure Airport</option>
+					{origins.map(e => <option value={e.code} key={`dep${e.code}`}>{e.name}</option>)}
+				</select>
+				<select onChange={e => handleChangeDestination(e)}>
+					<option value="">Select Destination Airport</option>
+					{destinations.map(e => <option value={e.code} key={`des${e.code}`}>{e.name}</option>)}
+				</select>
+			</div>
+			}
+			{flightUrl && <a href={flightUrl} target="_blank" rel="noopener noreferrer">Click Here For Flights!</a>}
+		</div>
+	)
 }
 
-
-    //<label>Outbound Date:</label>
-    //<input required name="outboundDate" type="date"/>
-    //<label>Return Date:</label>
-    //<input required name="returnDate" type="date"/>
 export default FlightForm
