@@ -1,10 +1,11 @@
 import axios from 'axios'
+/* istanbul ignore file */
 
 
 export function GlobeTrotter(token) {
 	const axios_helper = axios.create({baseURL: "https://globe--trotter.herokuapp.com/"})
 	axios_helper.defaults.headers.common['Authorization'] = token && `Token ${token}`
-
+	
 	async function loginRegUser(userData, mode) {
 		try {
 			const res = await axios_helper.post(mode.toLowerCase() + '/', userData)
@@ -21,7 +22,7 @@ export function GlobeTrotter(token) {
 			throw new Error(message)
 		}
 	}
-
+	
 	async function logout() {
 		try {
 			await axios_helper.post('logout/')

@@ -123,6 +123,7 @@ const Weather = ({locations, handleSelect}) => {
             {validLocations.length>0 ? <div className="flex-container"> <div className="result-grid"> 
                                         {validLocations.map((x, i)=>  <ResultItem key={`resultItem${i}`} location={x} />) } </div> </div>: <></>} 
 
+
             {locations && (validLocations.length===0 && !temperature) ? <div className="flex-container"> <div className="result-grid"> {locations.map((x, i) =>  <ResultItem key={`resultItem${i}`} location={x}/>)}</div> </div>: <></>}
             
             

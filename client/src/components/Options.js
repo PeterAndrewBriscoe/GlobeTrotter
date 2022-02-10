@@ -82,6 +82,7 @@ const Options = ({getResults}) => {
     }
 
     return(
+
         <form id="option-form" onSubmit={handleSubmit}>
             <h3 id="welcome-message">Select from the criteria below to find your perfect holiday destination!</h3>
             <div id="options-grid">

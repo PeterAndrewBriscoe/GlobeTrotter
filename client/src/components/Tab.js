@@ -16,7 +16,7 @@ function Tab(props) {
 	}
 
 	return (
-		<h3 onClick={handleClick}>
+		<h3 onClick={handleClick} role='clicker'>
       	<div className={`w3-half w3-bottombar w3-padding ${colours}`}>{props.title}</div>
     	</h3>
 	)

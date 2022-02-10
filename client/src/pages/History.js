@@ -6,8 +6,10 @@ import ListItem from '../components/ListItem'
 
 function History() {
 	const navigate = useNavigate()
+
 	const { userData } = useContext(Context)
 	const [output, setOutput] = useState('loading...')
+
 	const [list, setList] = useState('')
 
 	useEffect(() => {

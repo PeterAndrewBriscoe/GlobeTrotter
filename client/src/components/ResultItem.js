@@ -5,7 +5,7 @@ import Context from '../utils/Context'
 
 const ResultItem = ({location}) => {
     const navigate = useNavigate()
-    const { setPlaceData } = useContext(Context)
+    const setPlaceData  = useContext(Context)
 
     function handleClick(){
         setPlaceData(location)
