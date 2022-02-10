@@ -1,24 +1,25 @@
 import axios from 'axios'
 /* istanbul ignore file */
 
-//export const axios_helper = axios.create({ baseURL: "https://catfact.ninja" })
-
 
 export function GlobeTrotter(token) {
-	const axios_helper = axios.create({baseURL: "http://127.0.0.1:8000/api/"})
+	const axios_helper = axios.create({baseURL: "https://globe--trotter.herokuapp.com/"})
 	axios_helper.defaults.headers.common['Authorization'] = token && `Token ${token}`
 	
 	async function loginRegUser(userData, mode) {
 		try {
-			const { data } = await axios_helper.post(mode.toLowerCase() + '/', userData)
-			return data
+			const res = await axios_helper.post(mode.toLowerCase() + '/', userData)
+			return res.data
 		} catch(e) {
-			if('non_field_errors' in e.response.data)
-				throw new Error(e.response.data.non_field_errors[0])
-			else if('username' in e.response.data)
-				throw new Error(e.response.data.username[0])
-			else
-				throw new Error('Sorry there was an issue')
+			let message = 'Sorry there was an issue'
+			if(e.response) {
+				message += ': '
+				if(e.response.data.non_field_errors)
+					message += e.response.data.non_field_errors[0]
+				else if(e.response.data.username)
+					message += e.response.data.username[0]
+			}
+			throw new Error(message)
 		}
 	}
 	
@@ -29,12 +30,30 @@ export function GlobeTrotter(token) {
 		}
 	}
 
-	async function getSaved(username) {
+	async function getHistory() {
 		try {
-			return { username, places: [{name: 'london', long: 32, lat: 34 }, {name: 'rome', long: 32, lat: 34 }, {name: 'berlin', long: 32, lat: 34 }] }
+			const res = await axios_helper.get('api/')
+			return res.data
 		} catch(e) {
 		}
 	}
+
+	async function save(data) {
+		try {
+			const res = await axios_helper.post('api/', data)
+			return (res.data)
+		} catch(e) {
+			throw new Error('Sorry there was an issue while saving')
+		}
+	}
+
+	async function deleteRecord(recordId) {
+		try {
+			const res = await axios_helper.delete('api/', { data: { id: recordId } })
+		} catch(e) {
+			throw new Error('Sorry there was an issue, could not delete')
+		}
+	}
 	
-	return { loginRegUser, logout, getSaved }
+	return { loginRegUser, logout, getHistory, save, deleteRecord }
 }

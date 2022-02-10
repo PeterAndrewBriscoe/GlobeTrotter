@@ -15,12 +15,13 @@ function Login() {
 		try {
 			const trotter = GlobeTrotter()
 			const res = await trotter.loginRegUser(formData, mode)
-			if(res.token) {
+			if(res && res.token) {
 				localStorage.setItem('globeTrotterToken', res.token)
 				localStorage.setItem('globeTrotterUsername', formData.username)
-				setUserData(formData.username)
+				localStorage.setItem('globeTrotterEmail', formData.email)
+				setUserData({username: formData.username, email: formData.email})
+				navigate('/')
 			}
-			navigate('/')
 		} catch(e) {
 			setOutput(e.message)
 		}

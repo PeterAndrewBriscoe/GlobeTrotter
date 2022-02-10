@@ -377,5 +377,9 @@
             "snippet_language_info": null,
             "snippet": "Europe's financial metropolis and the former heart of the British Empire, packed with all sorts of attractions from sports to museums and two millennia of history.",
             "beaches_score": 2.626159913136971,
-            "subtype-Art_museums_score": 9.143915467593542
+            "subtype-Art_museums_score": 9.143915467593542,
+            "flightForm": {
+                "origin": "london"
+            },
+            "saved": true
 }
