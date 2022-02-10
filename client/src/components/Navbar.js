@@ -14,7 +14,7 @@ function Navbar() {
 			<div className="flex-container">
 				<Link to='/'><img id="logo" src={globetrotter}></img></Link>
 			<div id="nav-options">
-				{ userData.username ? <><UserMenu setUserData={setUserData}> Menu </UserMenu></> : <div id='login-icon'><Link to='login'> Login </Link></div>}
+				{ userData.username ? <><UserMenu setUserData={setUserData}> Menu </UserMenu></> : <div id='login-icon'><Link to='login'>Login / Register</Link></div>}
 			</div>
 			</div>
 		</nav>

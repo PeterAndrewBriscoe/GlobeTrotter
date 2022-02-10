@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import '../pages/detail.css'
 
 function Attractions({location}){
 
@@ -17,8 +18,10 @@ function Attractions({location}){
 
     return(
         <div id="attractions">
-            <h3>Attractions:</h3>
-            {attractionArray.length > 0 ? attractionArray.map(x => <a href={`https://www.google.com/search?q=${x.name}+${location}`} target="_blank" key={`link${x.name}`}><li key={x.id}>{x.name}</li></a>) : <h4>No attractions for this location</h4>}
+            {attractionArray.length > 0 ?   <><h3>Attractions:</h3>
+                                            <div id="attraction-list">{attractionArray.map(x => <a href={`https://www.google.com/search?q=${x.name}+${location}`} target="_blank" key={`link${x.name}`}><li className="attraction-item" key={x.id}>{x.name}</li></a>)}
+                                            </div>
+                                            </> : <></>}
         </div>
     )
 }

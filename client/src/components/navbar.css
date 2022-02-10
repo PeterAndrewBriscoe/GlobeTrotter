@@ -11,12 +11,18 @@ nav{
     position: relative;
 }
 
-#nav-options{
-
+#login-icon{
+    display: inline;
+    list-style: none;
+    margin-left: 20px;
+    font-size: 120%;
+    margin-top: 70px;
 }
 
-#login-icon {
-    padding-top: 10px;
+#login-icon:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #25582500 !important;
 }
 
 .user-menu{

@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Roboto Condensed', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiase;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: auto;
+    height: 100%;
+    /* overscroll-behavior-y: none; */
+    overscroll-behavior-x: none;
+  }
+  
+  html { 
+    background: url("https://cdn.wallpapersafari.com/89/40/8N3LCV.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  #placenameH3{
+      font-size: 190% !important;
+  }
+
+#detail-page{
+    font-family: 'DM Sans' !important;
+    background-color: #134213fa;
+    box-shadow: 2px 2px 2px #808080;
+    border-radius: 10px;
+    margin: 0% 5% 20px 5%;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+#attractions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.attraction-list{
+    margin: auto;
+    text-align: left;
+}
+
+.attraction-item{
+    list-style: none;
+    color: white !important;
+}
