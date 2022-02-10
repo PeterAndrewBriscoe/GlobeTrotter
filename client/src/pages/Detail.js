@@ -115,42 +115,47 @@ function Detail() {
 			<h3 className='w3-center' id="placenameH3">{placeData.name}</h3>
 			<h4>{placeData.snippet[0].toUpperCase()+placeData.snippet.substring(1)}</h4>
 			<Slideshow images={placeData.images}/>
-			<Attractions location={placeData.name}/>
-			{<div>
-				<ReactWeather
-      			isLoading={isLoading}
-      			errorMessage={errorMessage}
-      			data={data}
-      			lang="en"
-      			locationLabel={placeData.name}
-      			unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
-    			/>
-			</div>}
-			<div>
-				<Iframe url={`https://www.bing.com/maps/embed?h=400&w=400&cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&lvl=10&typ=d&sty=r&src=SHELL&FORM=MBEDV8`} scrolling="no"
-        			width="400px"
-        			height="400px"
-        			id="myId"
-        			className="myClassname"
-        			display="initial"
-        			position="relative"
-				/>
-				<a href={`https://www.bing.com/maps?cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&amp;sty=r&amp;lvl=10&amp;FORM=MBEDLD`} target="_blank" rel="noopener noreferrer">View Larger Map</a>
+			<div className="details-grid">
+				<Attractions location={placeData.name}/>
+				{<div id='weather'>
+					<ReactWeather
+					isLoading={isLoading}
+					errorMessage={errorMessage}
+					data={data}
+					lang="en"
+					locationLabel={placeData.name}
+					unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
+					/>
+				</div>}
+				<div className="flex-container">
+					<Iframe url={`https://www.bing.com/maps/embed?h=400&w=400&cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&lvl=10&typ=d&sty=r&src=SHELL&FORM=MBEDV8`} scrolling="no"
+						width="400px"
+						height="400px"
+						id="myId"
+						className="myClassname"
+						display="initial"
+						position="relative"
+					/>
+					<a href={`https://www.bing.com/maps?cp=${placeData.coordinates.latitude}~${placeData.coordinates.longitude}&amp;sty=r&amp;lvl=10&amp;FORM=MBEDLD`} target="_blank" rel="noopener noreferrer">View Larger Map</a>
+				</div>
+				<div id="flight-date-box">
+					<div id="date-picker">
+						<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
+					</div>
+					<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates} />
+				</div> 
 			</div>
-			{<div>
-				<DateRangePicker onChange={changeDates} value={dates} minDate={tomorrow()} maxDate={nextYear()} isOpen={true}/>
-			</div> }
-			<FlightForm flightForm={{flightForm, setFlightForm}} destination={placeData.name} dates={dates} />
 			{ userData &&
 			<div>
-				<button onClick={handleSave}>Save</button>
+				<button id="save" onClick={handleSave}>Save</button>
 				{placeData.recordId && <button onClick={showDeleteModal}>Delete</button>}
 			</div>
 			}
 			<ConfirmModal confirm={{setConfirmedModal}} show={{showModal, setShowModal}} />
 			{ output && <h2>{output}</h2>}
 		</div>
-		}</>
+		}
+		</>
 	)
 }
 

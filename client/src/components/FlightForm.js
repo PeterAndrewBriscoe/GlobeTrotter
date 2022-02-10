@@ -52,14 +52,14 @@ function FlightForm(props) {
 	}
 
 	return (
-		<div>
+		<div className="flight-form-div">
 			<form id="flight-form" onSubmit={handleFormSubmit}>
-         	<input required name="origin" type="text" placeholder='flying from' value={props.flightForm.flightForm.origin} onChange={handleInput} />
-         	<input required name="adults" type="number" min="0" max="8" placeholder='number of adults' value={props.flightForm.flightForm.adults} onChange={handleInput} />
-         	<input name="children" type="number" min="0" max="8" placeholder='number of children' value={props.flightForm.flightForm.children} onChange={handleInput} />
-      		<input type="submit" disabled={!props.dates}/>
+                <input required name="origin" type="text" placeholder='flying from' value={props.flightForm.flightForm.origin} onChange={handleInput} />
+                <input required name="adults" type="number" min="0" max="8" placeholder='number of adults' value={props.flightForm.flightForm.adults} onChange={handleInput} />
+                <input name="children" type="number" min="0" max="8" placeholder='number of children' value={props.flightForm.flightForm.children} onChange={handleInput} />
+                <input type="submit" disabled={!props.dates}/>
 				<h4>{output}</h4>
-      	</form>
+      	    </form>
 			{ origins.length > 0 && destinations.length > 0 &&
 			<div>
 				<select onChange={e => handleChangeDeparture(e)}>

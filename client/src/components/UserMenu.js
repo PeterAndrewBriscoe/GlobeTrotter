@@ -32,7 +32,7 @@ function UserMenu(props) {
 
 	return(
 		<div>
-			{/* <i className="bi bi-person-circle user-icon" data-testid='hide' onClick={handleShowHide}></i> */}
+			{/* <i className="bi bi-person-circle user-icon menu-item" data-testid='hide' onClick={handleShowHide}></i> */}
 			{ show &&
 				<div className='user-menu'>
 					<ul>

@@ -13,7 +13,6 @@ const Search = ({}) => {
 	const [results, setResults] = useState()
 	const [formSubmitted , setFormSubmitted]=useState(false)
 	const [loading , setLoading]=useState(true)
-	console.log(formSubmitted)
 
 	const getAverage = (array) => array.reduce((a, b) => a + b) / array.length;
 	
@@ -87,10 +86,10 @@ const Search = ({}) => {
 	function checkDataExists(){
 		if(formSubmitted && results){
 			if(loading){
-				return 	<div class="flex-container">
+				return 	<div className="flex-container">
 							<div className="loading-div">
 								<h3 className="loading-message">Loading...</h3>
-									<div class="loader"></div>
+									<div className="loader"></div>
 							</div>
 						</div>
 			}
@@ -105,10 +104,10 @@ const Search = ({}) => {
 		}
 		else if(formSubmitted && !results){
 			if(loading){
-				return 	<div class="flex-container">
+				return 	<div className="flex-container">
 							<div className="loading-div">
 								<h3 className="loading-message">Loading...</h3>
-								<div class="loader"></div>
+								<div className="loader"></div>
 							</div>
 						</div>
 			}

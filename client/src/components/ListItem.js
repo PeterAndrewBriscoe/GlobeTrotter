@@ -9,7 +9,6 @@ function ListItem(props) {
 	console.log(props.data.location.replace(/_/g," "))
 	async function getPlaceData() {
 		try {
-			console.log('fetch')
 			const data = await axios.get(`https://www.triposo.com/api/20220104/location.json?id=${props.data.location}&account=IG3CBP2Q&token=3f71d5kylylwplhj7wu5ikwa4yds3dlj`)
 			const flightForm = {
 				origin: props.data.origin,

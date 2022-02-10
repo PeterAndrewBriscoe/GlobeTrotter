@@ -42,6 +42,10 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: left;
+    background-color: #0c6431;
+    border: 1px solid #0c6431;
+    border-radius: 10px;
+    width: 100%;
 }
 
 .attraction-list{
@@ -52,4 +56,79 @@ body {
 .attraction-item{
     list-style: none;
     color: white !important;
+}
+
+.flex-container-details{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#weather {
+    width: auto;
+    margin-right: 20px;
+}
+
+.flex-container-details>div>Iframe{
+    margin-top: 20px;
+}
+
+#date-picker{
+    margin-top: 20px
+}
+
+.details-grid{
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); */
+    grid-template-columns: 50% 50%;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.details-grid>div{
+    text-align: center;
+}
+
+.details-grid>.flex-container{
+
+    padding: 10px;
+    width: 100%;
+}
+
+.flight-form-div>form>input{
+    width: 400% !important;
+    margin-top: 20px
+}
+
+#flight-date-box{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0c6431;
+    border: 1px solid #0c6431;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.flex-container>a{
+    color:white
+}
+
+#save{
+text-align: center;
+  border: none;
+  margin-top: 1.4%;
+  padding: 8px;
+  font-size: 110%;
+  color: white;
+  background-color:#0c6431;
+  transition: background-color 0.2s;
+  transition: box-shadow 0.2s;
+  border-radius: 5px;
+}
+
+#save:hover{
+  cursor: pointer;
+  background-color:#0b5a2d;
+  box-shadow: rgb(42, 85, 29) 1px 1px 1px ;
 }
