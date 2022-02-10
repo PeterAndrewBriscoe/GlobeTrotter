@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Context from '../utils/Context'
 import { GlobeTrotter } from '../utils/axios_helper'
 import ListItem from '../components/ListItem'
+import './history.css'
 
 function History() {
 	const navigate = useNavigate()
@@ -31,10 +32,10 @@ function History() {
 	}, [])
 
 	return (
-		<div>
+		<div className='history'>
 			<h2>History</h2>
 			<h3>{output}</h3>
-			<div>
+			<div className='saved'>
 			{ list &&
          	<div className="w3-container">
               	{list.map((e, i)=> <ListItem key={`place${i}`} data={e} />)}

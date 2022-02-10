@@ -63,7 +63,7 @@ const Search = ({}) => {
 		// if(temp){
 		// 	fetchedData.data.results.push({'minimumTemp': temp})
 		// }
-		setResults(fetchedData.data.results)
+		setResults(fetchedData.data.results.slice(0,10))
 		// console.log(fetchedData.data.results)
 		setLoading(false)
 	}

@@ -113,7 +113,7 @@ const Weather = ({locations, handleSelect}) => {
                         {temperature? <input type="submit"></input> : <></>}
                     </div>
                 <div>
-                    {locations && validLocations.length===0 && temperature ? <h4> No destinations for chosen temperature </h4> : <></>}
+                    {locations && validLocations.length===0 && temperature ? <h4 id="temp-message"> No locations found for the selected temperature </h4> : <></>}
                 </div>
         </form> 
         </div>

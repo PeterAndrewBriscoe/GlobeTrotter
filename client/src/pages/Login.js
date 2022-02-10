@@ -6,7 +6,7 @@ import Tab from '../components/Tab'
 
 function Login() {
 	const navigate = useNavigate()
-	const setUserData  = useContext(Context)
+	const {setUserData}  = useContext(Context)
 	const [mode, setMode] = useState('Login')
 	const [output, setOutput] = useState('')
 	const [formData, setFormData] = useState({ username: '', email: '', password: '', confPassword: ''})
@@ -43,7 +43,7 @@ function Login() {
 	return (
 		<div className='w3-content w3-container'>
 			<div className='w3-padding-64'></div>
-			<form className='w3-row' onSubmit={handleFormSubmit}>
+			<form className='w3-row auth-form' onSubmit={handleFormSubmit}>
 				<Tab modeState={{mode, setMode}} title='Login' />
 				<Tab modeState={{mode, setMode}} title='Register' />
 				<div className='w3-container'></div>

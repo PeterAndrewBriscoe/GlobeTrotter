@@ -4,7 +4,7 @@ import { GlobeTrotter } from '../utils/axios_helper'
 
 function UserMenu(props) {
 	const navigate = useNavigate()
-	const [show, setShow] = useState(false)
+	const [show, setShow] = useState(true)
 
 	const handleShowHide = () => {
 		setShow(state => !state)
@@ -32,11 +32,11 @@ function UserMenu(props) {
 
 	return(
 		<div>
-			<i className="bi bi-person-circle user-icon" data-testid='hide' onClick={handleShowHide}></i>
+			{/* <i className="bi bi-person-circle user-icon" data-testid='hide' onClick={handleShowHide}></i> */}
 			{ show &&
 				<div className='user-menu'>
 					<ul>
-						<li className="menu-item" onClick={() => { setShow(false); navigate('/history')}} data-testid='historyButton'>History</li>
+						<li className="menu-item" onClick={() => { navigate('/history')}} data-testid='historyButton'>History</li>
 						<li className="menu-item" onClick={handleLogout} role='Logout'>Logout</li>
 					</ul>
 				</div>

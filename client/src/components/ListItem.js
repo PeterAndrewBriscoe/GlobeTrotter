@@ -6,7 +6,7 @@ import axios from 'axios'
 function ListItem(props) {
 	const { setPlaceData } = useContext(Context)
 	const navigate = useNavigate()
-
+	console.log(props.data.location.replace(/_/g," "))
 	async function getPlaceData() {
 		try {
 			console.log('fetch')
@@ -30,8 +30,8 @@ function ListItem(props) {
 	}
 
 	return(
-		<div onClick={handleClick}>
-			<h3>{props.data.location}</h3>
+		<div onClick={handleClick} className='list-items'>
+			<h3>{props.data.location.replace(/_/g," ").replace(/2C/g,"").replace(/2e/g,".")}</h3>
 			<h3>{new Date(props.data.startdate).toLocaleDateString()}</h3>
 			<h3>{new Date(props.data.enddate).toLocaleDateString()}</h3>
 		</div>

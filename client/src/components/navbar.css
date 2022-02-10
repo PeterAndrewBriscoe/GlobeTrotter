@@ -1,0 +1,12 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-center;
+    align-items: center;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+#login-icon {
+    padding-top: 10px;
+}

@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import ConfirmModal from './ConfirmModal';
+import ExplainModal from './ExplainModal';
 
 const Options = ({getResults}) => {
     // useStates for checked/unchecked values for each option
@@ -10,6 +12,9 @@ const Options = ({getResults}) => {
 	const [skiing, setSkiing] = useState(false)
 	const [hiking, setHiking] = useState(false)
 	const [nightlife, setNightlife] = useState(false)
+
+    // useState for InfoModal
+    const [showModal, setShowModal] = useState('none')
 
     const checkboxArray = [art, beaches, cuisine, golf, museums, skiing, hiking, nightlife]
 
@@ -77,9 +82,15 @@ const Options = ({getResults}) => {
 	}
 
     function handleSubmit(e){
+        console.log("Im being submitted")
         e.preventDefault()
         getResults(e)
     }
+
+    // Function to show Modal
+    function showAboutModal() {
+		setShowModal('block')
+	}
 
     return(
 
@@ -151,10 +162,15 @@ const Options = ({getResults}) => {
                     {nightlife? <><input className="slider" type="range" name="nightlifeValue" min="5" max="10" value={nightlifeValue} step="0.2" onChange={handleSlide}></input></> : <></>}
                 </div>
             </div>
-            <div className="flex-container">
+            <div id="submitAndModal">
+                <div>
+                </div>
                 {noneChecked? <input disabled type="submit"/>: <input type="submit"/>}
+                <button type="button" id="infobtn" onClick={showAboutModal}>Info</button>
             </div>
+            <ExplainModal show={{showModal, setShowModal}} />
     </form>
+    
     )
 }
 
