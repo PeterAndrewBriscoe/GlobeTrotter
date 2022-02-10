@@ -29,6 +29,7 @@ DEBUG = False
 ALLOWED_HOSTS= ['globe--trotter.herokuapp.com']
 
 CORS_ALLOWED_ORIGINS = [
+    "https://pensive-villani-f6d9c6.netlify.app",
     "https://domain.com",
     "https://api.domain.com",
     "http://localhost:3000"
