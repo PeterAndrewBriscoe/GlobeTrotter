@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-akd10^&#76_b-15fb6v+cc5a_sg4u00()u_@q1#e5%_hry12(n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS= ['globe--trotter.herokuapp.com']
 
@@ -148,3 +148,6 @@ REST_FRAMEWORK = {
 }
 
 django_heroku.settings(locals())
+
+handler404 = 'main.views.not_found_404'
+handler500 = 'main.views.server_error_500'

@@ -1,5 +1,4 @@
-from os import stat
-from typing import Type
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -106,3 +105,10 @@ def form(request):
             return Response(serializer.data)
         else: 
             return Response({"message" : "User must be logged in to get form data"}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+def not_found_404(req, exception):
+    return HttpResponse("<h1>404 Page not Found<h1>")
+
+def server_error_500(req):
+    return HttpResponse("<h1>500 Internal Server error<h1>")
