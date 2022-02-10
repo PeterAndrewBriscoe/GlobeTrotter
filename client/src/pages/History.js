@@ -37,7 +37,7 @@ function History() {
 			<h3>{output}</h3>
 			<div className='saved'>
 			{ list &&
-         	<div className="w3-container">
+         	<div className="history-grid">
               	{list.map((e, i)=> <ListItem key={`place${i}`} data={e} />)}
             </div>
          }

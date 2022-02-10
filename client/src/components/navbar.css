@@ -1,12 +1,37 @@
+nav{
+    margin-left: -40px;
+}
+
 .flex-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-center;
+    justify-content: center;
     align-items: center;
     padding-bottom: 20px;
     position: relative;
 }
 
+#nav-options{
+
+}
+
 #login-icon {
     padding-top: 10px;
+}
+
+.user-menu{
+    display: flex;
+}
+
+.menu-item{
+    display: inline;
+    list-style: none;
+    margin-left: 20px;
+    font-size: 120%;
+}
+
+.menu-item:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #25582500 !important;
 }
