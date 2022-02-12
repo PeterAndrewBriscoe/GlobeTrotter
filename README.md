@@ -3,7 +3,7 @@
 ### Description
 GlobeTrotter is a Trip Adviser/Reccomendation web application designed to provide suggestions and information on various places based on prerequisite conditions - i.e. Categories such as Golf, Nightlife, Beach and users can also select based on average historical temperature for the location. The site can also provide a detailed view for each selected location wherein users can see hotels around the area that are available for booking and also get a link to flights available to airports in that location. Users are also able to Register and login in order to save Trips to various locations with details of their trips such as dates and flight information.
 
-This website is deployed on [Netlify](/) and has a Django server hosted on [Heroku](https://globe--trotter.herokuapp.com/)
+This website is deployed on [Netlify](https://globetrotter-app.netlify.app/) and has a Django server hosted on [Heroku](https://globe--trotter.herokuapp.com/)
 
 ## Installation
 - Clone the repositiory into desired directory
